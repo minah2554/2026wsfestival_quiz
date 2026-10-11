@@ -127,6 +127,8 @@ h2.display{font-size:clamp(20px,3.6vw,30px);color:var(--green-800)}
 .ans{min-height:clamp(84px,16vh,150px);border-radius:18px;border:3px solid rgba(0,0,0,.2);color:#fff;display:flex;align-items:center;gap:12px;padding:14px 16px;font-size:clamp(17px,2.3vw,30px);font-weight:900;text-align:left;box-shadow:0 6px 0 rgba(0,0,0,.25);width:100%;transition:transform .1s,filter .2s,opacity .2s}
 .ans .sym{font-size:1.35em;flex:none;width:1.3em;text-align:center}
 .ans .txt{min-width:0}
+.ans .sym,.choice .sym{color:#fff}
+.ans2 .sym,.choice.ans2 .sym{text-shadow:0 0 3px rgba(0,0,0,.5)}
 .ans0{background:var(--a0)}.ans1{background:var(--a1)}.ans2{background:var(--a2);color:#2a1f00}.ans3{background:var(--a3)}
 button.ans:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
 .ans:disabled{cursor:default}
@@ -263,7 +265,7 @@ button.ans:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 rg
   <header class="topbar">
     <div class="brand">
       <img src="assets/mascot-face.webp" alt="우신중 축제 마스코트">
-      <div><b>우신중 퀴즈쇼</b><small>WS FESTIVAL QUIZ SHOW</small></div>
+      <div><b>우신중학교 QUIZ SHOW</b><small>실시간 퀴즈 · 반별 대항전</small></div>
     </div>
     <nav class="tabs" role="tablist" aria-label="화면 전환">
       <button class="tab" role="tab" data-route="join" aria-selected="true">참가자 입장</button>
@@ -281,13 +283,14 @@ button.ans:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 rg
 <script type="module">
 /* ═════════════ 0. 상수 · 유틸 ═════════════ */
 /* ── 앱 버전 · 푸터 표시 (수정할 때마다 여기만 올리면 푸터에 자동 반영) ──
-   v1.2.1 (2026-10-11) 제목을 ‘우신중 퀴즈쇼’로 변경, 푸터 한 줄로 정리, ‘저장하기’ 버튼 항상 누를 수 있게 수정
+   v1.2.2 (2026-10-11) 제목 ‘우신중학교 QUIZ SHOW’(탭·상단·진행 화면), 부제 문구 변경(축제 표현 제거), 노란 보기 기호 흰색으로 통일
+   v1.2.1 (2026-10-11) 제목을 ‘우신중학교 QUIZ SHOW’로 변경, 푸터 한 줄로 정리, ‘저장하기’ 버튼 항상 누를 수 있게 수정
    v1.2.0 (2026-10-11) 글꼴 나눔스퀘어라운드, 푸터 영문 저작권 문구(날짜 제거), 학번 예시 4자리, 관리자 ‘저장하기’·‘퀴즈 새로 시작하기’ 추가
    v1.1.0 (2026-10-11) 글꼴 Pretendard 적용, 푸터 버전 표시 추가
    v1.0.0 (2026-10-11) 최초 제작: 실시간 퀴즈쇼, 반별 결과, 마스코트 UI */
 const APP_NAME = 'MINARI STUDIO';
-const APP_VERSION = '1.2.1';
-const EVENT_TITLE = '우신중 퀴즈쇼';
+const APP_VERSION = '1.2.2';
+const EVENT_TITLE = '우신중학교 QUIZ SHOW';
 const ADMIN_PW = '2610';
 { const f = document.getElementById('sitefoot'); if (f) f.innerHTML = `© 2026 <b>${APP_NAME}</b>. All rights reserved.<span class="ver">v${APP_VERSION}</span>`; }
 const ROOT = 'festival2026';
