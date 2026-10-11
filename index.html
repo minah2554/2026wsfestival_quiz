@@ -326,6 +326,7 @@ body.screen{cursor:default}
 <script type="module">
 /* ═════════════ 0. 상수 · 유틸 ═════════════ */
 /* ── 앱 버전 · 푸터 표시 (수정할 때마다 여기만 올리면 푸터에 자동 반영) ──
+   v1.4.2 (2026-10-11) JSON으로 가져온 문제의 id가 겹쳐도 수정·정답이 다른 문제로 섞이지 않도록 자동 정리
    v1.4.1 (2026-10-11) 대기실에서 입장한 학생 이름 목록 제거(인원수만 표시), ‘진행 중’ 등 배지·버튼 글자 줄바꿈 수정(한 줄 유지), 정답 선택이 확실히 저장되도록 보강(선택 즉시 반영·저장 후 서버 재확인·정답 요약 표시)
    v1.4.0 (2026-10-11) 카훗 방식으로 개편: ‘내 퀴즈’ 대시보드(여러 퀴즈 저장·편집·복제·삭제), 대기실(제목·QR·입장자 목록) 후 ‘게임 시작’, 배경음악, 대형화면 전용 보기(?screen)
    v1.3.1 (2026-10-11) 서버 연결이 늦거나 일시 실패해도 설정이 되돌아가지 않도록 동기화 방식 수정(연결 전에는 저장 보류, 연결되면 자동 반영), 저장 버튼 깜빡임을 위치 이동 없이 변경
@@ -336,7 +337,7 @@ body.screen{cursor:default}
    v1.1.0 (2026-10-11) 글꼴 Pretendard 적용, 푸터 버전 표시 추가
    v1.0.0 (2026-10-11) 최초 제작: 실시간 퀴즈쇼, 반별 결과, 마스코트 UI */
 const APP_NAME = 'MINARI STUDIO';
-const APP_VERSION = '1.4.1';
+const APP_VERSION = '1.4.2';
 const EVENT_TITLE = '우신중학교 QUIZ SHOW';
 const ADMIN_PW = '2610';
 { const f = document.getElementById('sitefoot'); if (f) f.innerHTML = `© 2026 <b>${APP_NAME}</b>. All rights reserved.<span class="ver">v${APP_VERSION}</span>`; }
@@ -449,7 +450,18 @@ const defaultCfg = () => ({
   auto: { on: false, delay: 5 },
   classBasis: 'avg'
 });
-const normCfg = c => { const d = defaultCfg(); return { ...d, ...c, scoring: { ...d.scoring, ...(c && c.scoring) }, auto: { ...d.auto, ...(c && c.auto) } }; };
+/* 문제 정리: id가 비었거나 겹치면(예: JSON에서 가져온 파일) 정답 라디오·수정 내용이 다른 문제에 섞이므로 항상 고유하게 맞춘다(기기마다 같은 규칙) */
+function normQuestions(qs) {
+  const seen = new Set();
+  return (Array.isArray(qs) ? qs : []).map((q, i) => {
+    let id = String((q && q.id) ?? '').replace(/[.#$\[\]\/\s]/g, '_');
+    if (!id || seen.has(id)) { id = (id || 'q') + '_' + (i + 1); while (seen.has(id)) id += 'x'; }
+    seen.add(id);
+    const ch = Array.isArray(q.choices) ? q.choices : [];
+    return { ...q, id, text: String(q.text ?? ''), choices: [0, 1, 2, 3].map(k => String(ch[k] ?? '')), correct: Math.min(4, Math.max(1, Number(q.correct) || 1)), timer: Number(q.timer) || 20 };
+  });
+}
+const normCfg = c => { const d = defaultCfg(); return { ...d, ...c, questions: c && c.questions ? normQuestions(c.questions) : d.questions, scoring: { ...d.scoring, ...(c && c.scoring) }, auto: { ...d.auto, ...(c && c.auto) } }; };
 const rid = () => Math.random().toString(36).slice(2, 6);
 const mkQuiz = (title, cfg, id) => ({ id: id || 'z' + Date.now().toString(36) + rid(), title, updatedAt: Date.now(), cfg });
 const blankQ = () => ({ id: newId(), text: '', choices: ['', '', '', ''], correct: 1, explanation: '', timer: 20, baseScore: null, bonus: null });
