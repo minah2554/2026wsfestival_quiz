@@ -259,6 +259,11 @@ button.ans:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 rg
 .proj-exit{position:fixed;top:10px;right:10px;z-index:90}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
+/* 글자 줄바꿈 방지(배지·작은 버튼·탭) */
+.chip,.pill,.btn.sm,.tab,.nm,.kicker{white-space:nowrap}
+.chip{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.chips,.live-stats,.qact,.cls-chips{flex-wrap:wrap}
+.qc-top .chip{flex:none}
 /* 내 퀴즈 대시보드 */
 .quiz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px;margin-top:6px}
 .quiz-card{padding:clamp(14px,2.4vw,22px);display:grid;gap:12px;align-content:space-between}
@@ -321,6 +326,7 @@ body.screen{cursor:default}
 <script type="module">
 /* ═════════════ 0. 상수 · 유틸 ═════════════ */
 /* ── 앱 버전 · 푸터 표시 (수정할 때마다 여기만 올리면 푸터에 자동 반영) ──
+   v1.4.1 (2026-10-11) 대기실에서 입장한 학생 이름 목록 제거(인원수만 표시), ‘진행 중’ 등 배지·버튼 글자 줄바꿈 수정(한 줄 유지), 정답 선택이 확실히 저장되도록 보강(선택 즉시 반영·저장 후 서버 재확인·정답 요약 표시)
    v1.4.0 (2026-10-11) 카훗 방식으로 개편: ‘내 퀴즈’ 대시보드(여러 퀴즈 저장·편집·복제·삭제), 대기실(제목·QR·입장자 목록) 후 ‘게임 시작’, 배경음악, 대형화면 전용 보기(?screen)
    v1.3.1 (2026-10-11) 서버 연결이 늦거나 일시 실패해도 설정이 되돌아가지 않도록 동기화 방식 수정(연결 전에는 저장 보류, 연결되면 자동 반영), 저장 버튼 깜빡임을 위치 이동 없이 변경
    v1.3.0 (2026-10-11) 문제·점수 설정을 서버(Firebase, 암호화)에 저장해 모든 기기에서 이어서 사용, 모바일 캐릭터 오른쪽 정렬
@@ -330,7 +336,7 @@ body.screen{cursor:default}
    v1.1.0 (2026-10-11) 글꼴 Pretendard 적용, 푸터 버전 표시 추가
    v1.0.0 (2026-10-11) 최초 제작: 실시간 퀴즈쇼, 반별 결과, 마스코트 UI */
 const APP_NAME = 'MINARI STUDIO';
-const APP_VERSION = '1.4.0';
+const APP_VERSION = '1.4.1';
 const EVENT_TITLE = '우신중학교 QUIZ SHOW';
 const ADMIN_PW = '2610';
 { const f = document.getElementById('sitefoot'); if (f) f.innerHTML = `© 2026 <b>${APP_NAME}</b>. All rights reserved.<span class="ver">v${APP_VERSION}</span>`; }
@@ -536,10 +542,19 @@ async function persistCfg() {
   try { localStorage.setItem(LIB_KEY, snap); } catch {}
   if (!cfgRemote.synced) { toast('아직 서버에서 설정을 불러오지 못해서 저장하지 않았어요. 연결 표시가 ✅로 바뀐 뒤 다시 눌러 주세요.', 5200); return false; }
   cfgRemote.saving = true; updateSaveUi();
-  try { await pushCfg(); savedStr = snap; savedAt = new Date(); return true; }
+  try { await pushCfg(); savedStr = snap; savedAt = new Date(); verifyCfg(snap); return true; }
   catch (e) { console.error(e); toast('서버 저장에 실패했어요. 연결을 확인하고 ‘저장하기’를 다시 눌러 주세요.', 5200); return false; }
   finally { cfgRemote.saving = false; updateSaveUi(); }
 }
+async function verifyCfg(snap) {                           // 저장 직후 서버에 실제로 반영됐는지 다시 읽어 확인
+  try {
+    const rec = await Promise.race([DB.get(CFG_PATH), sleep(4000).then(() => 'timeout')]);
+    if (rec === 'timeout' || !rec || !rec.data) return;
+    const d = await decryptCfg(rec);
+    if (JSON.stringify(normLib(d)) !== JSON.stringify(normLib(JSON.parse(snap)))) toast('⚠️ 서버에 저장된 내용이 방금 저장한 내용과 달라요. 다른 기기에서 동시에 저장했을 수 있어요. 새로고침 후 다시 확인해 주세요.', 7000);
+  } catch (e) { console.warn('verify skipped', e); }
+}
+const correctSummary = () => CFG.questions.map((q, i) => `Q${i + 1} ${SYMBOLS[q.correct - 1] || '?'}`).join(' · ');
 function saveCfg() { persistCfg(); }                       // 진행 화면 등에서 즉시 저장
 function markDirty() { updateSaveUi(); }                   // 설정 화면: ‘저장하기’를 눌러야 반영
 function updateSaveUi() {
@@ -937,7 +952,7 @@ function bindSetup() {
   $('#addQ').onclick = () => { CFG.questions.push(blankQ()); markDirty(); reList(); };
   const reList = () => { $('#qList').innerHTML = CFG.questions.map((q, i) => qCardHTML(q, i, CFG.questions.length)).join(''); $('#qCount').textContent = CFG.questions.length; };
   const qList = $('#qList');
-  qList.addEventListener('input', e => {
+  const onQEdit = e => {
     const card = e.target.closest('.qcard'); if (!card) return;
     const q = CFG.questions.find(x => x.id === card.dataset.id); if (!q) return;
     const t = e.target;
@@ -946,7 +961,9 @@ function bindSetup() {
     else if (['timer', 'baseScore', 'bonus'].includes(t.dataset.f)) q[t.dataset.f] = t.value === '' ? (t.dataset.f === 'timer' ? 20 : null) : Math.max(0, Number(t.value) || 0);
     else if (t.dataset.f) q[t.dataset.f] = t.value;
     markDirty();
-  });
+  };
+  qList.addEventListener('input', onQEdit);
+  qList.addEventListener('change', onQEdit);                    // 라디오(정답 선택)는 브라우저에 따라 change만 발생할 수 있어 함께 처리
   qList.addEventListener('click', e => {
     const b = e.target.closest('[data-act]'); if (!b) return;
     const card = b.closest('.qcard'); const i = CFG.questions.findIndex(x => x.id === card.dataset.id);
@@ -1086,7 +1103,7 @@ async function saveNow() {
   const bad = validateQuestions();
   const live = S.live && S.live.phase && S.live.phase !== 'lobby';
   if (bad) toast(`저장했어요 ✓ 다만 Q${bad.i + 1}: ${bad.why} 시작 전에 고쳐 주세요.`, 5200);
-  else toast(`${wasDirty ? '저장했어요' : '이미 모두 저장돼 있어요'} ✓ (문제 ${G.questions.length}개)${live ? ' · 진행 중인 퀴즈에 처음부터 반영하려면 ‘새로 시작하기’를 눌러 주세요.' : ''}`, live ? 5200 : 2600);
+  else toast(`${wasDirty ? '저장했어요' : '이미 모두 저장돼 있어요'} ✓ 정답: ${correctSummary()}${live && S.live.quizId === A.qid ? ' · 진행 중인 게임에 처음부터 반영하려면 ‘내 퀴즈’에서 ▶ 시작을 다시 눌러 주세요.' : ''}`, live ? 5200 : 2600);
 }
 async function openLobby(z) {
   await resetGame();
@@ -1279,8 +1296,7 @@ function lobbyHTML(L) {
     <h1 class="lb-title display">${esc((L && L.quizTitle) || EVENT_TITLE)}</h1>
     <p class="lb-sub">${L && L.total ? `문제 ${L.total}개 · ` : ''}휴대폰으로 QR을 찍고 입장하세요!</p>
     <div class="lb-count"><b id="lbCount">0</b>명 입장</div><div class="cls-chips" id="lbCls"></div></div>
-    <div class="lb-qr"><div class="lb-qrbox" id="lobbyQR"></div><div class="lb-url">${esc(joinUrl())}</div></div>
-    <div class="lb-names" id="lbNames"></div></div>`;
+    <div class="lb-qr"><div class="lb-qrbox" id="lobbyQR"></div><div class="lb-url">${esc(joinUrl())}</div></div></div>`;
 }
 function updateLobby() {
   const c = $('#lbCount'); if (!c) return;
