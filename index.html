@@ -104,7 +104,7 @@ h2.display{font-size:clamp(20px,3.6vw,30px);color:var(--green-800)}
 @media(max-width:860px){
   .join{grid-template-columns:1fr}
   .hero{grid-template-columns:auto 1fr;justify-items:start;align-items:center;gap:12px}
-  .hero img.m{width:clamp(96px,28vw,150px)}
+  .hero img.m{width:clamp(96px,28vw,150px);justify-self:end;margin-left:auto}
 }
 @media(max-width:380px){.grade-row{grid-template-columns:48px repeat(4,minmax(0,1fr));gap:6px}.in{font-size:20px}}
 
@@ -283,13 +283,14 @@ button.ans:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 rg
 <script type="module">
 /* ═════════════ 0. 상수 · 유틸 ═════════════ */
 /* ── 앱 버전 · 푸터 표시 (수정할 때마다 여기만 올리면 푸터에 자동 반영) ──
+   v1.3.0 (2026-10-11) 문제·점수 설정을 서버(Firebase, 암호화)에 저장해 모든 기기에서 이어서 사용, 모바일 캐릭터 오른쪽 정렬
    v1.2.2 (2026-10-11) 제목 ‘우신중학교 QUIZ SHOW’(탭·상단·진행 화면), 부제 문구 변경(축제 표현 제거), 노란 보기 기호 흰색으로 통일
    v1.2.1 (2026-10-11) 제목을 ‘우신중학교 QUIZ SHOW’로 변경, 푸터 한 줄로 정리, ‘저장하기’ 버튼 항상 누를 수 있게 수정
    v1.2.0 (2026-10-11) 글꼴 나눔스퀘어라운드, 푸터 영문 저작권 문구(날짜 제거), 학번 예시 4자리, 관리자 ‘저장하기’·‘퀴즈 새로 시작하기’ 추가
    v1.1.0 (2026-10-11) 글꼴 Pretendard 적용, 푸터 버전 표시 추가
    v1.0.0 (2026-10-11) 최초 제작: 실시간 퀴즈쇼, 반별 결과, 마스코트 UI */
 const APP_NAME = 'MINARI STUDIO';
-const APP_VERSION = '1.2.2';
+const APP_VERSION = '1.3.0';
 const EVENT_TITLE = '우신중학교 QUIZ SHOW';
 const ADMIN_PW = '2610';
 { const f = document.getElementById('sitefoot'); if (f) f.innerHTML = `© 2026 <b>${APP_NAME}</b>. All rights reserved.<span class="ver">v${APP_VERSION}</span>`; }
@@ -415,14 +416,87 @@ let CFG = loadCfg();
 let savedStr = JSON.stringify(CFG), savedAt = null;
 const isDirty = () => JSON.stringify(CFG) !== savedStr;
 const hhmmss = d => d.toLocaleTimeString('ko-KR', { hour12: false });
-function persistCfg() { localStorage.setItem(CFG_KEY, JSON.stringify(CFG)); savedStr = JSON.stringify(CFG); savedAt = new Date(); updateSaveUi(); }
+/* ── 서버(Firebase) 저장: 문제·점수 설정을 암호화해 DB(adminCfg)에 보관 → 어느 기기에서든 이어서 사용 ── */
+const CFG_PATH = 'adminCfg';
+const DEVICE = Math.random().toString(36).slice(2, 8);
+const cfgRemote = { at: 0, loading: false, err: false, saving: false };
+const enc8 = new TextEncoder(), dec8 = new TextDecoder();
+const toB64 = u8 => { let s = ''; u8.forEach(b => s += String.fromCharCode(b)); return btoa(s); };
+const fromB64 = t => Uint8Array.from(atob(t), c => c.charCodeAt(0));
+let _ck;
+const cfgKey = () => _ck || (_ck = crypto.subtle.importKey('raw', enc8.encode(ADMIN_PW), 'PBKDF2', false, ['deriveKey'])
+  .then(k => crypto.subtle.deriveKey({ name: 'PBKDF2', salt: enc8.encode('ws2026-quiz-cfg-v1'), iterations: 120000, hash: 'SHA-256' }, k, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt'])));
+async function encryptCfg(obj) {
+  const txt = enc8.encode(JSON.stringify(obj));
+  if (!(window.crypto && crypto.subtle)) return { enc: 0, data: toB64(txt) };
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, await cfgKey(), txt));
+  return { enc: 1, iv: toB64(iv), data: toB64(ct) };
+}
+async function decryptCfg(rec) {
+  if (!rec.enc) return JSON.parse(dec8.decode(fromB64(rec.data)));
+  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: fromB64(rec.iv) }, await cfgKey(), fromB64(rec.data));
+  return JSON.parse(dec8.decode(new Uint8Array(pt)));
+}
+async function pushCfg() {
+  const rec = await encryptCfg(CFG), at = Date.now();
+  await DB.set(CFG_PATH, { ...rec, at, by: DEVICE, n: CFG.questions.length });
+  cfgRemote.at = at;
+}
+function adoptCfg(d, at) {
+  const base = defaultCfg();
+  CFG = { ...base, ...d, scoring: { ...base.scoring, ...d.scoring }, auto: { ...base.auto, ...d.auto } };
+  savedStr = JSON.stringify(CFG); savedAt = new Date(at || Date.now()); cfgRemote.at = at || 0;
+  try { localStorage.setItem(CFG_KEY, JSON.stringify(CFG)); } catch {}
+}
+async function loadRemoteCfg() {
+  cfgRemote.loading = true; updateSaveUi();
+  try {
+    const rec = await DB.get(CFG_PATH);
+    if (rec && rec.data) {
+      const d = await decryptCfg(rec);
+      if (!d || !Array.isArray(d.questions) || !d.questions.length) throw new Error('bad cfg');
+      adoptCfg(d, rec.at);
+    } else if (localStorage.getItem(CFG_KEY)) {                 // 서버에 아직 없으면 이 기기의 저장본을 올림
+      await pushCfg(); savedStr = JSON.stringify(CFG); savedAt = new Date();
+      toast('이 기기에 저장돼 있던 문제를 서버에 올렸어요 ☁️', 3600);
+    }
+    cfgRemote.err = false;
+  } catch (e) {
+    console.error(e); cfgRemote.err = true;
+    toast('서버에서 문제 설정을 불러오지 못했어요. 연결을 확인하고 새로고침해 주세요. (이 상태에서는 서버에 저장되지 않아요)', 6000);
+  }
+  cfgRemote.loading = false;
+  if (R.route === 'admin') render(); else updateSaveUi();
+}
+function watchRemoteCfg() {
+  return DB.watch(CFG_PATH, async rec => {
+    if (!rec || !rec.data || cfgRemote.loading || rec.by === DEVICE || !(rec.at > cfgRemote.at)) return;
+    if (isDirty()) { cfgRemote.at = rec.at; toast('다른 기기에서 문제를 저장했어요. 지금 수정 중인 내용을 저장하면 그 내용을 덮어써요.', 5200); return; }
+    try { const d = await decryptCfg(rec); adoptCfg(d, rec.at); toast('다른 기기에서 저장한 문제를 불러왔어요 ☁️', 3200); if (R.route === 'admin' && A.view === 'setup') renderSetup(); } catch (e) { console.error(e); }
+  });
+}
+async function persistCfg() {
+  const snap = JSON.stringify(CFG);
+  try { localStorage.setItem(CFG_KEY, snap); } catch {}
+  if (cfgRemote.err || cfgRemote.loading) { toast('서버와 연결되지 않아 이 기기에만 저장했어요. 다른 기기에는 반영되지 않아요.', 5200); return false; }
+  cfgRemote.saving = true; updateSaveUi();
+  try { await pushCfg(); savedStr = snap; savedAt = new Date(); return true; }
+  catch (e) { console.error(e); toast('서버 저장에 실패했어요. 연결을 확인하고 ‘저장하기’를 다시 눌러 주세요.', 5200); return false; }
+  finally { cfgRemote.saving = false; updateSaveUi(); }
+}
 function saveCfg() { persistCfg(); }                       // 진행 화면 등에서 즉시 저장
 function markDirty() { updateSaveUi(); }                   // 설정 화면: ‘저장하기’를 눌러야 반영
 function updateSaveUi() {
-  const d = isDirty();
+  const d = isDirty(), busy = cfgRemote.loading || cfgRemote.saving;
   const chip = $('#saveState');
-  if (chip) { chip.textContent = d ? '✏️ 저장 안 됨 (수정 중)' : '✅ 저장됨' + (savedAt ? ' · ' + hhmmss(savedAt) : ''); chip.classList.toggle('warn', d); }
-  const sb = $('#saveBtn'), rb = $('#revertBtn'); if (sb) sb.classList.toggle('pulse', d); if (rb) rb.disabled = !d;
+  const where = DB && DB.mode === 'firebase' ? '서버에 저장됨' : '저장됨 (테스트 모드)';
+  if (chip) {
+    chip.textContent = cfgRemote.loading ? '⏳ 서버에서 불러오는 중…' : cfgRemote.saving ? '⏳ 저장 중…' : cfgRemote.err ? '⚠️ 서버 연결 안 됨' : d ? '✏️ 저장 안 됨 (수정 중)' : '✅ ' + where + (savedAt ? ' · ' + hhmmss(savedAt) : '');
+    chip.classList.toggle('warn', d || cfgRemote.err || busy);
+  }
+  const sb = $('#saveBtn'), rb = $('#revertBtn'); if (sb) { sb.classList.toggle('pulse', d && !busy); sb.disabled = busy; } if (rb) rb.disabled = !d || busy;
+  ['#goLive', '#restartBtn'].forEach(id => { const el = $(id); if (el) el.disabled = cfgRemote.loading; });
   const note = $('#liveNote'); if (note) { const L = S.live; note.classList.toggle('hidden', !(L && L.phase && L.phase !== 'lobby')); }
 }
 window.addEventListener('beforeunload', e => { if (isDirty()) { e.preventDefault(); e.returnValue = ''; } });
@@ -707,6 +781,7 @@ function startAdminSubs() {
   if (adminSubs.length) return;
   adminSubs.push(DB.watch('players', v => { H.players = v || {}; if (R.route === 'admin' && A.view === 'setup') { updateSetupStatus(); renderRoster(); } hostCounts(); }));
   adminSubs.push(DB.watch('scores', v => { H.scores = v || {}; }));
+  loadRemoteCfg().then(() => adminSubs.push(watchRemoteCfg()));
   onLive();
 }
 
@@ -763,7 +838,7 @@ function renderSetup() {
       <section class="card pad"><h2 class="display" style="margin-bottom:10px">데이터 관리</h2>
         <div class="qact"><button class="btn sm" id="exp">JSON 내보내기</button><button class="btn sm" id="imp">JSON 가져오기</button><input type="file" id="impFile" accept="application/json" class="hidden"></div>
         <div class="qact" style="margin-top:10px"><button class="btn sm danger" id="rstSample">문제 샘플로 초기화</button><button class="btn sm danger" id="rstGame">점수·진행 초기화</button><button class="btn sm danger" id="rstPlayers">참가자 전체 삭제</button></div>
-        <p class="muted" style="font-size:12px;font-weight:700;margin-top:10px">💡 수정한 뒤에는 꼭 <b>‘저장하기’</b>를 눌러 주세요. 문제와 정답은 이 기기(브라우저)에만 저장돼요. 다른 기기로 옮기려면 JSON으로 내보내세요.</p>
+        <p class="muted" style="font-size:12px;font-weight:700;margin-top:10px">💡 수정한 뒤에는 꼭 <b>‘저장하기’</b>를 눌러 주세요. 저장하면 암호화되어 서버에 보관돼서, 어느 기기에서든 로그인하면 같은 문제로 이어서 진행할 수 있어요. (‘문제 샘플로 초기화’를 누르고 저장하기 전까지 유지돼요)</p>
       </section>
     </aside>
   </div>
@@ -864,9 +939,9 @@ async function resetGame() { await DB.update({ live: null, answers: null, result
 
 /* ═════════════ 10. 진행자: 흐름 제어 ═════════════ */
 const pubQuestion = i => { const q = CFG.questions[i]; return { id: q.id, text: q.text, choices: q.choices, timer: q.timer, index: i, total: CFG.questions.length }; };
-function saveNow() {
+async function saveNow() {
   const wasDirty = isDirty();
-  persistCfg();
+  if (!(await persistCfg())) return;
   const bad = validateQuestions();
   const live = S.live && S.live.phase && S.live.phase !== 'lobby';
   if (bad) toast(`저장했어요 ✓ 다만 Q${bad.i + 1}: ${bad.why} 시작 전에 고쳐 주세요.`, 5200);
@@ -876,13 +951,13 @@ function restartShow() {
   const bad = validateQuestions();
   if (bad) { toast(`Q${bad.i + 1}: ${bad.why}`, 4200); const el = $$('.qcard')[bad.i]; if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
   confirmModal((isDirty() ? '수정한 내용을 저장하고, ' : '') + '점수·답안·진행 상황을 모두 지운 뒤 1번 문제부터 새로 시작합니다.\n(참가자 명단은 유지돼요)', async () => {
-    if (isDirty()) persistCfg();
+    if (isDirty() && !(await persistCfg())) return;
     try { await resetGame(); await goIntro(0); } catch (err) { console.error(err); return toast('새로 시작하지 못했어요. 연결을 확인하고 다시 눌러 주세요.', 4200); }
     A.view = 'live'; render(); window.scrollTo(0, 0); toast('처음부터 새로 시작했어요 🎬');
   }, '새로 시작');
 }
-function startShow() {
-  if (isDirty()) { persistCfg(); toast('수정한 내용을 저장하고 시작해요 ✓'); }
+async function startShow() {
+  if (isDirty()) { if (!(await persistCfg())) return; toast('수정한 내용을 저장하고 시작해요 ✓'); }
   const bad = validateQuestions();
   if (bad) {
     toast(`Q${bad.i + 1}: ${bad.why}`, 4200);
