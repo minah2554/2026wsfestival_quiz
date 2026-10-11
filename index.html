@@ -1,0 +1,1119 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e4d35">
+<meta name="color-scheme" content="light">
+<title>2026 우신중 축제 퀴즈쇼</title>
+<link rel="icon" href="assets/mascot-face.webp" type="image/webp">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<style>
+/* Pretendard (jsDelivr · projectnoonnu) */
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');font-weight:100;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');font-weight:200;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');font-weight:800;font-display:swap}
+@font-face{font-family:'Pretendard';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');font-weight:900;font-display:swap}
+
+:root{
+  --green-900:#0a3624; --green-800:#0e4d35; --green:#17825a; --mint:#35c58b; --mint-soft:#e1f6ec;
+  --cream:#f7f3e9; --ink:#14231b; --muted:#5a6b61; --line:#d6e2da; --yellow:#f5b301; --yellow-soft:#fff1c2;
+  --a0:#e5384f; --a1:#2f6fd0; --a2:#f0b400; --a3:#1f9d64;
+  --radius:20px; --font-body:"Pretendard",system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif; --font-display:var(--font-body);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--font-body);display:flex;flex-direction:column;color:var(--ink);background:var(--cream);min-height:100vh;min-height:100dvh;line-height:1.45;word-break:keep-all;overflow-wrap:anywhere;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(900px 520px at 6% -6%,#c6f0dc 0,transparent 62%),radial-gradient(760px 520px at 100% 100%,#ffe8a3 0,transparent 58%),radial-gradient(#0e4d3512 1.2px,transparent 1.2px) 0 0/22px 22px,var(--cream)}
+img{max-width:100%;height:auto;display:block}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;touch-action:manipulation}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.hidden{display:none!important}
+.display{font-family:var(--font-display);font-weight:900;letter-spacing:-.01em}
+.muted{color:var(--muted)}
+#app{flex:1 0 auto;display:flex;flex-direction:column;width:100%}
+#view{flex:1 0 auto}
+.sitefoot{flex-shrink:0;text-align:center;padding:18px 16px max(18px,env(safe-area-inset-bottom));font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.sitefoot b{font-weight:800;color:var(--green-800);letter-spacing:.06em}
+.sitefoot .ver{display:inline-block;margin-left:6px;padding:1px 8px;border:1.5px solid var(--green-800);border-radius:999px;background:#fff;color:var(--green-800);font-weight:800}
+body.proj .sitefoot{display:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* 상단 바 */
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px clamp(12px,3vw,28px);padding-top:max(10px,env(safe-area-inset-top));background:rgba(255,255,255,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:3px solid var(--green-800)}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand img{width:48px;height:48px;flex:none;border-radius:14px;background:var(--mint-soft);border:2px solid var(--green-800);object-fit:cover}
+.brand b{display:block;font-family:var(--font-display);font-weight:900;font-size:clamp(17px,2.6vw,24px);color:var(--green-800);line-height:1.1}
+.brand small{display:block;font-size:12px;color:var(--muted)}
+.tabs{display:flex;gap:6px;padding:4px;background:var(--mint-soft);border-radius:16px;border:2px solid var(--green-800);flex:none}
+.tab{padding:10px 18px;min-height:44px;border-radius:12px;font-weight:900;color:var(--green-800)}
+.tab[aria-selected="true"]{background:var(--green-800);color:#fff}
+@media(max-width:640px){.topbar{flex-wrap:wrap}.tabs{width:100%}.tab{flex:1;padding:10px 6px}}
+.proj .topbar{display:none}
+
+.banner{padding:9px 16px;text-align:center;font-weight:700;font-size:14px;background:var(--yellow-soft);border-bottom:2px solid #d9a800;color:#5b4300}
+.banner.err{background:#ffe1e1;border-color:#d33;color:#8a1111}
+
+/* 공통 컴포넌트 */
+.page{width:min(1200px,100%);margin:0 auto;padding:clamp(14px,3vw,30px)}
+.page.narrow{width:min(560px,100%)}
+.card{background:#fff;border:3px solid var(--green-800);border-radius:var(--radius);box-shadow:6px 6px 0 var(--green-800)}
+.pad{padding:clamp(16px,3vw,28px)}
+.stack{display:grid;gap:20px;align-content:start}
+@media(max-width:560px){.card{box-shadow:4px 4px 0 var(--green-800);border-radius:18px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 18px;border-radius:14px;font-weight:900;border:3px solid var(--green-800);background:#fff;color:var(--green-800);box-shadow:3px 3px 0 var(--green-800);transition:transform .08s,box-shadow .08s,filter .15s;text-align:center}
+.btn:hover:not(:disabled){filter:brightness(1.05)}
+.btn:active:not(:disabled){transform:translate(3px,3px);box-shadow:0 0 0 var(--green-800)}
+.btn.primary{background:var(--mint);color:var(--green-900)}
+.btn.accent{background:var(--yellow);color:#2b1f00}
+.btn.danger{background:#ffe3e3;color:#9a1212;border-color:#9a1212;box-shadow:3px 3px 0 #9a1212}
+.btn.sm{min-height:40px;padding:6px 12px;font-size:14px}
+.btn.xl{min-height:64px;font-size:clamp(18px,4.6vw,24px);width:100%}
+.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--mint-soft);border:2px solid var(--green-800);font-weight:800;font-size:14px;color:var(--green-800)}
+.chip.warn{background:var(--yellow-soft)}
+h1.display{font-size:clamp(26px,5vw,44px);line-height:1.1;color:var(--green-800)}
+h2.display{font-size:clamp(20px,3.6vw,30px);color:var(--green-800)}
+.field{display:grid;gap:6px}
+.field>label,.label{font-weight:900;color:var(--green-800)}
+.in{width:100%;height:64px;padding:0 18px;border-radius:16px;border:3px solid var(--green-800);background:#fff;font-size:22px;font-weight:700}
+.in::placeholder{color:#9aaba1;font-weight:500}
+.in:focus{outline:none;box-shadow:0 0 0 4px #f5b30188}
+.msg{min-height:22px;font-weight:700;color:#b3261e}
+.msg.ok{color:var(--green)}
+
+/* 참가자 입장 */
+.join{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(16px,3vw,34px);align-items:start}
+.hero{position:relative;background:linear-gradient(160deg,var(--mint-soft),#fff 70%);overflow:hidden;display:grid;justify-items:center;gap:8px;padding:clamp(14px,3vw,24px)}
+.hero img.m{width:min(300px,70%);filter:drop-shadow(0 10px 0 rgba(14,77,53,.18))}
+.hero .bubble{justify-self:start;background:var(--yellow);border:3px solid var(--green-800);border-radius:16px 16px 16px 4px;padding:8px 14px;font-weight:900;font-size:15px;color:#2b1f00;width:fit-content}
+.hero .tag{font-weight:900;color:var(--green-800);text-align:left}
+.hero .hero-text{display:grid;gap:10px;justify-items:start;justify-self:stretch}
+.picker{display:grid;gap:10px}
+.grade-row{display:grid;grid-template-columns:62px repeat(4,minmax(0,1fr));gap:8px;align-items:center}
+.grade-label{font-weight:900;color:var(--green-800);font-size:15px}
+.tile{min-height:58px;border-radius:14px;border:3px solid var(--green-800);background:#fff;font-weight:900;font-size:clamp(16px,4.4vw,22px);color:var(--green-800);transition:transform .08s}
+.tile:hover{background:var(--mint-soft)}
+.tile[aria-pressed="true"]{background:var(--green-800);color:#fff;transform:translateY(-2px);box-shadow:0 4px 0 var(--yellow)}
+.picked{font-weight:900;min-height:24px;color:var(--green)}
+@media(max-width:860px){
+  .join{grid-template-columns:1fr}
+  .hero{grid-template-columns:auto 1fr;justify-items:start;align-items:center;gap:12px}
+  .hero img.m{width:clamp(96px,28vw,150px)}
+}
+@media(max-width:380px){.grade-row{grid-template-columns:48px repeat(4,minmax(0,1fr));gap:6px}.in{font-size:20px}}
+
+/* 참가자 플레이 화면 */
+.me-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.me-bar .who{font-weight:900;color:var(--green-800)}
+.p-card{padding:clamp(16px,3.4vw,30px);display:grid;gap:16px;text-align:center;justify-items:center}
+.p-card.left{text-align:left;justify-items:stretch}
+.p-card img.m{width:min(260px,62vw);animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.dots{display:flex;gap:8px}.dots i{width:12px;height:12px;border-radius:50%;background:var(--green);animation:blink 1.2s infinite}.dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
+@keyframes blink{50%{opacity:.2}}
+.bignum{font-family:var(--font-display);font-weight:900;font-size:clamp(80px,26vw,170px);line-height:.9;color:var(--yellow);-webkit-text-stroke:3px var(--green-800);text-shadow:5px 5px 0 var(--green-800)}
+.p-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:900;color:var(--green-800)}
+.p-timer{font-family:var(--font-display);font-weight:900;font-size:clamp(30px,8vw,44px);min-width:2.2ch;text-align:right}
+.bar{height:14px;border-radius:99px;background:#e5ece7;border:2px solid var(--green-800);overflow:hidden}
+.bar i{display:block;height:100%;width:100%;background:var(--mint);transition:width .25s linear}
+.p-qtext{font-size:clamp(20px,5.2vw,30px);font-weight:900;line-height:1.3;text-align:left}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ans{min-height:clamp(84px,16vh,150px);border-radius:18px;border:3px solid rgba(0,0,0,.2);color:#fff;display:flex;align-items:center;gap:12px;padding:14px 16px;font-size:clamp(17px,2.3vw,30px);font-weight:900;text-align:left;box-shadow:0 6px 0 rgba(0,0,0,.25);width:100%;transition:transform .1s,filter .2s,opacity .2s}
+.ans .sym{font-size:1.35em;flex:none;width:1.3em;text-align:center}
+.ans .txt{min-width:0}
+.ans0{background:var(--a0)}.ans1{background:var(--a1)}.ans2{background:var(--a2);color:#2a1f00}.ans3{background:var(--a3)}
+button.ans:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.ans:disabled{cursor:default}
+.ans.dim{opacity:.28;filter:grayscale(.6)}
+.ans.pick{outline:5px solid var(--green-900);outline-offset:2px}
+.ans.correct{outline:6px solid #fff;box-shadow:0 0 0 9px var(--green-800),0 0 36px #fff9}
+@media(max-width:640px){.answers{grid-template-columns:1fr}.ans{min-height:78px}}
+.status{font-weight:900;padding:10px 14px;border-radius:14px;background:var(--mint-soft);border:2px dashed var(--green-800);color:var(--green-800)}
+.verdict{font-family:var(--font-display);font-weight:900;font-size:clamp(34px,9vw,60px);line-height:1.1}
+.verdict.ok{color:var(--green)}.verdict.no{color:#c0312f}
+.pts{font-family:var(--font-display);font-weight:900;font-size:clamp(28px,7vw,44px);color:var(--green-800)}
+.stats3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%}
+.stat{background:var(--mint-soft);border:2px solid var(--green-800);border-radius:14px;padding:10px 6px}
+.stat b{display:block;font-family:var(--font-display);font-weight:900;font-size:clamp(20px,5vw,30px);color:var(--green-800)}
+.stat small{font-size:12px;color:var(--muted);font-weight:700}
+
+/* 순위 목록 */
+.rank-list{display:grid;gap:8px;width:100%}
+.rrow{display:grid;grid-template-columns:46px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px;border:2px solid var(--green-800);border-radius:14px;background:#fff;text-align:left}
+.rrow.me{background:var(--yellow-soft);border-width:3px}
+.rk{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--mint-soft);border:2px solid var(--green-800);font-weight:900;font-size:16px}
+.rk.m1{background:#ffd84d}.rk.m2{background:#dfe5e8}.rk.m3{background:#e7b27c}
+.rname{font-weight:900;min-width:0}.rname small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.rval{font-weight:900;text-align:right;white-space:nowrap}.rval small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.crow{display:grid;grid-template-columns:46px minmax(110px,.9fr) minmax(0,1.6fr) auto;gap:10px;align-items:center;padding:10px 12px;border:2px solid var(--green-800);border-radius:14px;background:#fff;text-align:left}
+.crow.me{background:var(--yellow-soft);border-width:3px}
+.cbar{height:18px;border-radius:99px;background:#e5ece7;overflow:hidden;border:2px solid var(--green-800)}
+.cbar i{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--green));min-width:6px}
+@media(max-width:560px){.crow{grid-template-columns:40px minmax(0,1fr) auto}.crow .cbar{grid-column:1/-1;order:5;height:12px}}
+.basis{font-size:13px;font-weight:800;text-align:right}
+.crow .rname{white-space:nowrap}
+.mine-box{width:100%;display:grid;gap:4px;padding:12px;border-radius:16px;background:var(--yellow-soft);border:3px solid var(--green-800);font-weight:900}
+
+/* 관리자 */
+.gate{display:grid;gap:14px;justify-items:center;text-align:center}
+.gate img{width:96px;height:96px;border-radius:24px;background:var(--mint-soft);border:3px solid var(--green-800)}
+.gate form{display:grid;gap:12px;width:100%}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.admin-head{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:20px}
+.admin-head .chips{display:flex;gap:8px;flex-wrap:wrap}
+.admin-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+@media(max-width:980px){.admin-grid{grid-template-columns:1fr}}
+.sec-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.qcard{border:3px solid var(--green-800);border-radius:18px;padding:14px;margin-top:14px;background:#fbfdfb;display:grid;gap:12px}
+.qtop{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start}
+.qno{font-size:26px;color:var(--green-800);line-height:1.3}
+.ta{width:100%;min-height:64px;resize:vertical;padding:10px 12px;border-radius:12px;border:2px solid var(--green-800);background:#fff;font-size:16px}
+.ti{width:100%;height:44px;padding:0 10px;border-radius:10px;border:2px solid var(--green-800);background:#fff;color:var(--ink);font-size:16px;min-width:0}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.choice{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:8px;align-items:center;padding:8px;border-radius:12px;color:#fff;border:2px solid rgba(0,0,0,.2)}
+.choice.ans2{color:#2a1f00}
+.choice .ti{border-color:rgba(0,0,0,.3)}
+.choice input[type=radio]{width:22px;height:22px;accent-color:#0a3624}
+.choice .sym{font-weight:900;font-size:18px}
+@media(max-width:600px){.choices{grid-template-columns:1fr}}
+.mini{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.mini label{font-size:12px;font-weight:800;color:var(--green-800);display:grid;gap:3px}
+@media(max-width:600px){.mini{grid-template-columns:1fr 1fr}}
+.qact{display:flex;gap:8px;flex-wrap:wrap}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-grid label{font-size:13px;font-weight:800;color:var(--green-800);display:grid;gap:4px}
+.check{display:flex!important;grid-template-columns:none!important;align-items:center;gap:10px;font-weight:800}
+.check input{width:22px;height:22px;accent-color:var(--green-800);flex:none}
+.cls-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.roster{max-height:340px;overflow:auto;display:grid;gap:8px;margin-top:10px}
+.prow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:8px 10px;border:2px solid var(--line);border-radius:12px}
+.prow b{display:block}.prow small{color:var(--muted)}
+.prow .acts{display:flex;gap:6px}
+.filters{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:8px}
+.cta-bar{position:sticky;bottom:0;z-index:40;margin:24px calc(-1*clamp(14px,3vw,30px)) calc(-1*clamp(14px,3vw,30px));padding:12px clamp(14px,3vw,30px);padding-bottom:max(12px,env(safe-area-inset-bottom));background:rgba(255,255,255,.94);border-top:3px solid var(--green-800);display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.cta-bar .btn{flex:1 1 280px}
+
+/* 라이브(진행자) */
+.live{display:grid;gap:14px}
+.live-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px}
+.live-head h1{font-size:clamp(20px,3.4vw,32px)}
+.pill{padding:6px 14px;border-radius:999px;background:var(--green-800);color:#fff;font-weight:900}
+.stage{min-height:clamp(320px,52vh,720px);padding:clamp(18px,4vw,52px);display:flex;align-items:center;position:relative;overflow:hidden}
+.stage>.in-stage{width:100%;display:grid;gap:clamp(14px,2.4vw,28px)}
+.intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:20px;align-items:center}
+.intro .m{width:min(360px,100%);justify-self:center;filter:drop-shadow(0 10px 0 rgba(14,77,53,.18))}
+@media(max-width:760px){.intro{grid-template-columns:1fr}.intro .m{max-width:200px}}
+.kicker{font-weight:900;letter-spacing:.2em;color:var(--green)}
+.q-text{font-size:clamp(26px,4.6vw,64px);line-height:1.2;font-weight:900;letter-spacing:-.03em}
+.q-row{display:flex;gap:18px;align-items:center;justify-content:space-between}
+.ring{--p:100;flex:none;width:clamp(84px,12vw,140px);aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--green) calc(var(--p)*1%),#e5ece7 0);display:grid;place-items:center;border:3px solid var(--green-800)}
+.ring b{width:78%;aspect-ratio:1;border-radius:50%;background:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:900;font-size:clamp(28px,5vw,56px);color:var(--green-800)}
+.live-stats{display:flex;gap:10px;flex-wrap:wrap;font-weight:900}
+.explain{padding:12px 16px;border-radius:14px;background:var(--mint-soft);border:2px solid var(--green-800);font-weight:700;font-size:clamp(15px,1.8vw,22px)}
+.res-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:18px;align-items:start}
+@media(max-width:860px){.res-grid{grid-template-columns:1fr}}
+.dist{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:8px;align-items:center;margin-top:8px;font-weight:900}
+.dist .sym{display:grid;place-items:center;height:30px;border-radius:8px;color:#fff;font-size:14px}
+.dist .bar{height:20px}.dist .bar i{background:var(--mint)}
+.dist.ok .bar i{background:var(--green)}
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.seg .btn[aria-pressed="true"]{background:var(--green-800);color:#fff}
+.controls{position:sticky;bottom:8px;z-index:30;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px;background:rgba(255,255,255,.96)}
+.controls .grow{flex:1 1 auto}
+.controls .btn.main{flex:1 1 240px;min-height:56px;font-size:18px}
+@media(max-width:640px){.controls{position:static}.controls .btn:not(.main){flex:1 1 calc(50% - 8px)}.controls .btn.main{order:-1;flex-basis:100%}}
+.pod-wrap{display:grid;gap:22px}
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:clamp(6px,1.6vw,14px);min-height:250px}
+.pod{flex:1;max-width:240px;padding:12px 8px;border:3px solid var(--green-800);border-radius:16px 16px 0 0;text-align:center;font-weight:900;display:grid;align-content:start;gap:4px}
+.pod .medal{font-size:clamp(26px,5vw,44px)}
+.pod .pn{font-size:clamp(14px,2.2vw,22px)}
+.pod small{font-weight:700;color:#3b4b42}
+.pod.p1{height:250px;background:#ffd84d}.pod.p2{height:195px;background:#dfe5e8}.pod.p3{height:155px;background:#e7b27c}
+.final-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+@media(max-width:900px){.final-grid{grid-template-columns:1fr}}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
+.confetti i{position:absolute;top:-20px;width:10px;height:16px;border-radius:2px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+
+/* 모달/토스트 */
+.modal-bg{position:fixed;inset:0;z-index:100;background:#06231899;display:grid;place-items:center;padding:16px}
+.modal{width:min(720px,100%);max-height:90vh;max-height:90dvh;overflow:auto;padding:clamp(16px,3vw,26px)}
+.qr{display:grid;justify-items:center;gap:12px;text-align:center}
+.qr svg{width:min(320px,80vw);height:auto}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:120;background:var(--green-900);color:#fff;padding:12px 18px;border-radius:14px;font-weight:800;max-width:92vw;text-align:center;box-shadow:0 8px 24px #0005}
+.empty{padding:20px;border:2px dashed var(--line);border-radius:14px;text-align:center;color:var(--muted);font-weight:700}
+.proj-exit{position:fixed;top:10px;right:10px;z-index:90}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/mascot-face.webp" alt="우신중 축제 마스코트">
+      <div><b>2026 우신중 축제 퀴즈쇼</b><small>WS FESTIVAL QUIZ SHOW</small></div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="화면 전환">
+      <button class="tab" role="tab" data-route="join" aria-selected="true">참가자 입장</button>
+      <button class="tab" role="tab" data-route="admin" aria-selected="false">관리자 설정</button>
+    </nav>
+  </header>
+  <div id="banner"></div>
+  <main id="view"></main>
+  <footer class="sitefoot" id="sitefoot"></footer>
+</div>
+<div id="modal"></div>
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+<script src="firebase-config.js"></script>
+<script type="module">
+/* ═════════════ 0. 상수 · 유틸 ═════════════ */
+/* ── 앱 버전 · 푸터 표시 (수정할 때마다 여기만 올리면 푸터에 자동 반영) ──
+   v1.1.0 (2026-10-11) 글꼴 Pretendard 적용, 푸터 버전 표시 추가
+   v1.0.0 (2026-10-11) 최초 제작: 실시간 퀴즈쇼, 반별 결과, 마스코트 UI */
+const APP_NAME = 'MINARI STUDIO';
+const APP_VERSION = '1.1.0';
+const APP_UPDATED = '2026-10-11';
+const EVENT_TITLE = '2026 우신중 축제 퀴즈쇼';
+const ADMIN_PW = '2610';
+{ const f = document.getElementById('sitefoot'); if (f) f.innerHTML = `© 2026 <b>${APP_NAME}</b><span class="ver">v${APP_VERSION}</span> · ${APP_UPDATED}`; }
+const ROOT = 'festival2026';
+const SYMBOLS = ['▲','◆','●','■'];
+const CLASSES = [];
+for (let g = 1; g <= 3; g++) for (let c = 1; c <= 4; c++) CLASSES.push({ key: g + '-' + c, g, c });
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+const fmt = n => Number(n || 0).toLocaleString('ko-KR');
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const toArr = v => Array.isArray(v) ? v.filter(x => x != null) : (v && typeof v === 'object' ? Object.values(v) : []);
+const clsLabel = key => { const [g, c] = String(key).split('-'); return g + '학년 ' + c + '반'; };
+const medal = r => r === 1 ? '🥇' : r === 2 ? '🥈' : r === 3 ? '🥉' : String(r);
+const medalCls = r => r <= 3 ? ' m' + r : '';
+const MASCOT = 'assets/mascot.webp';
+function rankDesc(arr, key) {
+  arr.sort((a, b) => (b[key] - a[key]) || String(a.name || a.key || '').localeCompare(String(b.name || b.key || ''), 'ko'));
+  let prev = null, r = 0;
+  arr.forEach((x, i) => { if (x[key] !== prev) { r = i + 1; prev = x[key]; } x.rank = r; });
+  return arr;
+}
+let toastTimer;
+function toast(msg, ms = 2800) {
+  const t = $('#toast'); t.textContent = msg; t.classList.remove('hidden');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.add('hidden'), ms);
+}
+function showModal(html) {
+  $('#modal').innerHTML = `<div class="modal-bg" id="mbg"><div class="modal card" role="dialog" aria-modal="true">${html}</div></div>`;
+  $('#mbg').addEventListener('click', e => { if (e.target.id === 'mbg') closeModal(); });
+}
+function closeModal() { $('#modal').innerHTML = ''; }
+function confirmModal(text, onYes, yesLabel = '확인') {
+  showModal(`<h2 class="display" style="margin-bottom:10px">확인해 주세요</h2><p style="margin:12px 0 18px;font-weight:700">${esc(text)}</p>
+  <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap"><button class="btn" id="cNo">취소</button><button class="btn danger" id="cYes">${esc(yesLabel)}</button></div>`);
+  $('#cNo').onclick = closeModal; $('#cYes').onclick = () => { closeModal(); onYes(); };
+}
+
+/* ═════════════ 1. 데이터 저장소 (Firebase / 로컬 테스트) ═════════════ */
+function makeLocal() {
+  const KEY = 'ws2026_local_db';
+  const listeners = new Set();
+  const read = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
+  const keys = p => p.split('/').filter(Boolean);
+  const getAt = (t, p) => keys(p).reduce((a, k) => (a == null ? undefined : a[k]), t);
+  const setAt = (t, p, v) => {
+    const ks = keys(p); let o = t;
+    ks.slice(0, -1).forEach(k => { if (typeof o[k] !== 'object' || o[k] === null) o[k] = {}; o = o[k]; });
+    const last = ks[ks.length - 1];
+    if (v === null || v === undefined) delete o[last]; else o[last] = JSON.parse(JSON.stringify(v));
+  };
+  const notify = () => listeners.forEach(l => l());
+  window.addEventListener('storage', e => { if (e.key === KEY) notify(); });
+  return {
+    mode: 'local',
+    now: () => Date.now(),
+    async get(p) { const v = getAt(read(), p); return v === undefined ? null : JSON.parse(JSON.stringify(v)); },
+    async set(p, v) { const t = read(); setAt(t, p, v); localStorage.setItem(KEY, JSON.stringify(t)); notify(); },
+    async remove(p) { return this.set(p, null); },
+    async update(obj) { const t = read(); for (const k in obj) setAt(t, k, obj[k]); localStorage.setItem(KEY, JSON.stringify(t)); notify(); },
+    watch(p, cb) {
+      let last;
+      const run = () => {
+        const v = getAt(read(), p); const s = JSON.stringify(v === undefined ? null : v);
+        if (s !== last) { last = s; cb(v === undefined ? null : JSON.parse(s)); }
+      };
+      listeners.add(run); queueMicrotask(run);
+      return () => listeners.delete(run);
+    }
+  };
+}
+async function makeFirebase(cfg) {
+  const V = '10.14.1';
+  const appM = await import(`https://www.gstatic.com/firebasejs/${V}/firebase-app.js`);
+  const dbM = await import(`https://www.gstatic.com/firebasejs/${V}/firebase-database.js`);
+  const app = appM.initializeApp(cfg);
+  const db = dbM.getDatabase(app);
+  let offset = 0;
+  dbM.onValue(dbM.ref(db, '.info/serverTimeOffset'), s => { offset = s.val() || 0; });
+  const R = p => dbM.ref(db, ROOT + '/' + p);
+  return {
+    mode: 'firebase',
+    now: () => Date.now() + offset,
+    async get(p) { return (await dbM.get(R(p))).val(); },
+    set: (p, v) => dbM.set(R(p), v === undefined ? null : v),
+    remove: p => dbM.remove(R(p)),
+    update(obj) { const o = {}; for (const k in obj) o[ROOT + '/' + k] = obj[k] === undefined ? null : obj[k]; return dbM.update(dbM.ref(db), o); },
+    watch: (p, cb) => dbM.onValue(R(p), s => cb(s.val()), err => dbError(err))
+  };
+}
+let DB = null;
+function dbError(err) {
+  console.error(err);
+  $('#banner').innerHTML = `<div class="banner err">데이터베이스 접근에 문제가 있어요. Firebase 규칙·설정을 확인해 주세요. (${esc(err && err.code || err)})</div>`;
+}
+
+/* ═════════════ 2. 관리자 설정(이 기기에만 저장) ═════════════ */
+const CFG_KEY = 'ws2026_admin_cfg_v1';
+const sampleQuestions = () => [
+  { id: 'q1', text: '훈민정음을 창제한 조선의 왕은 누구일까요?', choices: ['세종대왕', '정조', '태조', '영조'], correct: 1, explanation: '세종대왕은 훈민정음을 창제했습니다.', timer: 20, baseScore: null, bonus: null },
+  { id: 'q2', text: '대한민국의 국화는 무엇일까요?', choices: ['무궁화', '장미', '벚꽃', '해바라기'], correct: 1, explanation: '무궁화는 대한민국의 국화입니다.', timer: 20, baseScore: null, bonus: null },
+  { id: 'q3', text: '지구에서 가장 큰 바다는 어디일까요?', choices: ['대서양', '인도양', '태평양', '북극해'], correct: 3, explanation: '태평양은 지구에서 가장 큰 바다입니다.', timer: 20, baseScore: null, bonus: null }
+];
+const defaultCfg = () => ({
+  questions: sampleQuestions(),
+  scoring: { base: 100, fast: 20, streak: 10, classBonus: 10, classBonusOn: false },
+  auto: { on: false, delay: 5 },
+  classBasis: 'avg'
+});
+function loadCfg() {
+  try {
+    const s = JSON.parse(localStorage.getItem(CFG_KEY));
+    if (s && Array.isArray(s.questions) && s.questions.length) {
+      const d = defaultCfg();
+      return { ...d, ...s, scoring: { ...d.scoring, ...s.scoring }, auto: { ...d.auto, ...s.auto } };
+    }
+  } catch {}
+  return defaultCfg();
+}
+let CFG = loadCfg();
+let saveT;
+function saveCfg() { clearTimeout(saveT); saveT = setTimeout(() => { localStorage.setItem(CFG_KEY, JSON.stringify(CFG)); const el = $('#saveState'); if (el) el.textContent = '자동 저장됨 ✓'; }, 250); }
+const newId = () => 'q' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+function validateQuestions() {
+  for (let i = 0; i < CFG.questions.length; i++) {
+    const q = CFG.questions[i];
+    if (!String(q.text).trim()) return { i, why: '문제 내용이 비어 있어요.' };
+    if (q.choices.length !== 4 || q.choices.some(c => !String(c).trim())) return { i, why: '보기 4개를 모두 입력해 주세요.' };
+    if (!(q.correct >= 1 && q.correct <= 4)) return { i, why: '정답을 선택해 주세요.' };
+    if (!(q.timer >= 5 && q.timer <= 300)) return { i, why: '제한 시간은 5~300초로 입력해 주세요.' };
+  }
+  return null;
+}
+
+/* ═════════════ 3. 전역 상태 ═════════════ */
+const S = { live: null, board: null, my: null };           // 공유 데이터
+const R = { route: 'join' };
+const A = { ok: sessionStorage.getItem('ws2026_admin') === '1', view: 'gate', filter: { q: '', cls: '' }, tab: 'person', autoAt: null, autoKey: '' };
+const H = { players: {}, scores: {}, ansCount: 0, ansQ: null, ansUnsub: null, sig: '', csig: '', closing: false };
+const P = { me: null, sel: null, ans: { q: null, choice: 0 }, ansUnsub: null, stageKey: '', expired: false, subs: [] };
+const HOSTID = (() => { let v = sessionStorage.getItem('ws2026_hostid'); if (!v) { v = Math.random().toString(36).slice(2, 10); sessionStorage.setItem('ws2026_hostid', v); } return v; })();
+try { P.me = JSON.parse(localStorage.getItem('ws2026_me')); } catch { P.me = null; }
+const isHost = () => A.ok && S.live && S.live.hostId === HOSTID;
+
+/* ═════════════ 4. 라우팅 · 공통 렌더 ═════════════ */
+function go(route) {
+  R.route = route;
+  $$('.tab').forEach(t => t.setAttribute('aria-selected', String(t.dataset.route === route)));
+  if (route === 'admin') A.view = A.ok ? (A.view === 'live' ? 'live' : 'setup') : 'gate';
+  render(); window.scrollTo(0, 0);
+}
+function render() {
+  if (R.route === 'join') renderParticipant();
+  else if (!A.ok) renderGate();
+  else if (A.view === 'live') renderHost(true);
+  else renderSetup();
+}
+function refresh() {
+  if (R.route === 'join') { if (P.me) renderPlay(); }
+  else if (A.ok && A.view === 'live') renderHost();
+}
+
+/* ═════════════ 5. 참가자: 입장 ═════════════ */
+const meKey = () => P.me ? P.me.pid : '';
+function renderParticipant() { P.me ? renderPlay(true) : renderJoin(); }
+function renderJoin() {
+  const sel = P.sel;
+  $('#view').innerHTML = `
+  <div class="page"><div class="join">
+    <section class="card hero" aria-label="축제 마스코트">
+      <div class="hero-text">
+        <div class="bubble">정답은 내 손 안에! 🎤</div>
+        <div class="tag"><span class="display" style="font-size:clamp(18px,3vw,26px);color:var(--green-800)">우리 반 이름을 걸고<br>퀴즈에 도전!</span></div>
+      </div>
+      <img class="m" src="${MASCOT}" alt="마이크와 물음표 카드를 든 축제 마스코트" width="300" height="414">
+    </section>
+    <section class="card pad" aria-label="퀴즈 입장">
+      <h1 class="display" style="margin-bottom:6px">퀴즈 입장</h1>
+      <p class="muted" style="margin-bottom:16px;font-weight:700">반을 고르고, 학번과 이름을 적어 주세요.</p>
+      <form id="joinForm" autocomplete="off" novalidate>
+        <div class="field" style="margin-bottom:16px">
+          <span class="label" id="clsLbl">① 우리 반 선택</span>
+          <div class="picker" role="group" aria-labelledby="clsLbl">
+            ${[1, 2, 3].map(g => `<div class="grade-row"><span class="grade-label">${g}학년</span>${[1, 2, 3, 4].map(c => {
+              const k = g + '-' + c; return `<button type="button" class="tile" data-cls="${k}" aria-pressed="${sel === k}">${c}반</button>`;
+            }).join('')}</div>`).join('')}
+          </div>
+          <div class="picked" id="picked" aria-live="polite">${sel ? '✅ ' + clsLabel(sel) + ' 선택됨' : ''}</div>
+        </div>
+        <div class="field" style="margin-bottom:14px">
+          <label for="jNum">② 학번</label>
+          <input id="jNum" class="in" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="예) 10215" autocomplete="off">
+        </div>
+        <div class="field" style="margin-bottom:10px">
+          <label for="jName">③ 이름</label>
+          <input id="jName" class="in" maxlength="10" placeholder="이름을 입력하세요" autocomplete="off">
+        </div>
+        <p class="msg" id="jMsg" role="alert"></p>
+        <button class="btn primary xl" type="submit" id="jBtn">🚀 입장하기</button>
+      </form>
+    </section>
+  </div></div>`;
+  $$('.tile').forEach(b => b.onclick = () => {
+    P.sel = b.dataset.cls;
+    $$('.tile').forEach(t => t.setAttribute('aria-pressed', String(t === b)));
+    $('#picked').textContent = '✅ ' + clsLabel(P.sel) + ' 선택됨'; $('#jMsg').textContent = '';
+  });
+  $('#jNum').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, ''); });
+  $('#joinForm').onsubmit = onJoin;
+}
+async function onJoin(e) {
+  e.preventDefault();
+  const msg = t => { const m = $('#jMsg'); m.textContent = t; };
+  const num = $('#jNum').value.trim().replace(/^0+(?=\d)/, '');
+  const name = $('#jName').value.trim().replace(/\s+/g, ' ');
+  if (!P.sel) return msg('먼저 우리 반을 선택해 주세요.');
+  if (!/^\d{1,8}$/.test(num)) return msg('학번은 숫자로 입력해 주세요.');
+  if (!name) return msg('이름을 입력해 주세요.');
+  const btn = $('#jBtn'); btn.disabled = true; btn.textContent = '입장 중…';
+  try {
+    const [g, c] = P.sel.split('-').map(Number);
+    const pid = `${g}-${c}-${num}`;
+    const ex = await DB.get('players/' + pid);
+    if (ex && String(ex.name).replace(/\s/g, '') !== name.replace(/\s/g, '')) {
+      btn.disabled = false; btn.textContent = '🚀 입장하기';
+      return msg('이미 같은 학번으로 다른 이름이 등록되어 있어요. 학번과 이름을 다시 확인해 주세요.');
+    }
+    await DB.set('players/' + pid, { pid, g, c, num, name, joinedAt: ex ? ex.joinedAt : DB.now() });
+    P.me = { pid, g, c, num, name, key: g + '-' + c };
+    localStorage.setItem('ws2026_me', JSON.stringify(P.me));
+    subscribeMe(); renderPlay(true);
+  } catch (err) {
+    console.error(err); btn.disabled = false; btn.textContent = '🚀 입장하기';
+    msg('입장하지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.');
+  }
+}
+function leave(why) {
+  P.subs.forEach(u => u()); P.subs = [];
+  if (P.ansUnsub) { P.ansUnsub(); P.ansUnsub = null; }
+  P.me = null; P.ans = { q: null, choice: 0 }; S.my = null; P.stageKey = '';
+  localStorage.removeItem('ws2026_me');
+  if (why) toast(why, 4200);
+  if (R.route === 'join') renderJoin();
+}
+function subscribeMe() {
+  P.subs.forEach(u => u()); P.subs = [];
+  if (!P.me) return;
+  P.subs.push(DB.watch('players/' + P.me.pid, v => { if (v == null && P.me) leave('참가 정보가 삭제되었어요. 다시 입장해 주세요.'); }));
+  P.subs.push(DB.watch('scores/' + P.me.pid, v => { S.my = v; if (R.route === 'join' && P.me) renderPlay(); }));
+  onLive();
+}
+
+/* ═════════════ 6. 참가자: 플레이 화면 ═════════════ */
+function meBar() {
+  const m = P.me;
+  return `<div class="me-bar"><span class="chip">🎒 ${esc(clsLabel(m.key))} · ${esc(m.num)}번 ${esc(m.name)}</span><button class="btn sm" id="leaveBtn">나가기</button></div>`;
+}
+function renderPlay(force) {
+  if (!P.me) return renderJoin();
+  const L = S.live, ph = L ? L.phase : 'lobby';
+  const key = [ph, L && L.qId, L && L.paused, P.ans.choice, S.my && S.my.total, S.my && S.my.last && S.my.last.qId, S.board && S.board.at, P.expired].join('|');
+  if (!force && key === P.stageKey) return;
+  P.stageKey = key;
+  const board = S.board, my = S.my;
+  let body = '';
+  const mineBox = () => my ? `<div class="mine-box">내 점수 ${fmt(my.total)}점 · 전체 ${my.rank || '-'}위${my.classRank ? ' · 우리 반 ' + my.classRank + '위' : ''}</div>` : '';
+  if (ph === 'lobby' || !L) {
+    body = `<div class="card p-card"><img class="m" src="${MASCOT}" alt="" width="260" height="360"><h1 class="display">입장 완료! 🎉</h1><p style="font-weight:700">진행자가 퀴즈를 시작하면<br>이 화면에 문제가 나타나요.</p><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div></div>`;
+  } else if (ph === 'intro') {
+    body = `<div class="card p-card"><div class="kicker">QUESTION</div><div class="bignum">${L.qIndex + 1}</div><p class="display" style="font-size:24px;color:var(--green-800)">/ ${L.question.total}</p><p style="font-weight:800">곧 문제가 시작돼요. 준비!</p><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div></div>`;
+  } else if (ph === 'question') {
+    const q = L.question, locked = !!P.ans.choice || P.expired || L.paused;
+    body = `<div class="card p-card left">
+      <div class="p-meta"><span>문제 ${q.index + 1} / ${q.total}</span><span class="p-timer" id="pT">–</span></div>
+      <div class="bar" aria-hidden="true"><i id="pBar"></i></div>
+      <h2 class="p-qtext">${esc(q.text)}</h2>
+      <div class="answers" role="group" aria-label="보기">${q.choices.map((c, i) => `<button class="ans ans${i} ${P.ans.choice ? (P.ans.choice === i + 1 ? 'pick' : 'dim') : ''}" data-a="${i + 1}" ${locked ? 'disabled' : ''}><span class="sym">${SYMBOLS[i]}</span><span class="txt">${esc(c)}</span></button>`).join('')}</div>
+      <div class="status" role="status">${L.paused ? '⏸ 잠시 멈췄어요. 곧 이어져요!' : P.ans.choice ? `제출 완료! ${SYMBOLS[P.ans.choice - 1]} 를 골랐어요. 결과를 기다려요 ⏳` : P.expired ? '⏰ 시간이 끝났어요!' : '보기를 누르면 바로 제출돼요 (한 번만 가능)'}</div>
+    </div>`;
+  } else if (ph === 'closed') {
+    body = `<div class="card p-card"><div class="verdict display">마감!</div><p style="font-weight:800">${P.ans.choice ? '제출한 답을 확인하는 중이에요…' : '이번 문제는 제출하지 못했어요.'}</p><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div></div>`;
+  } else if (ph === 'reveal') {
+    const rv = L.reveal || {}, last = my && my.last && my.last.qId === L.qId ? my.last : null;
+    const q = L.question;
+    const head = !last || !last.choice ? `<div class="verdict display no">미제출</div><p style="font-weight:800">이번 문제는 응답이 없어요.</p>`
+      : last.correct ? `<div class="verdict display ok">정답! 🎉</div><div class="pts">+${fmt(last.points)}점</div>`
+      : `<div class="verdict display no">아쉬워요 😢</div><div class="pts">+0점</div>`;
+    body = `<div class="card p-card left"><div style="text-align:center;display:grid;gap:6px;justify-items:center">${head}</div>
+      <p class="p-qtext" style="font-size:clamp(17px,4.4vw,22px)">${esc(q.text)}</p>
+      <div class="answers">${q.choices.map((c, i) => `<div class="ans ans${i} ${rv.correct === i + 1 ? 'correct' : 'dim'}"><span class="sym">${SYMBOLS[i]}</span><span class="txt">${esc(c)}${last && last.choice === i + 1 ? ' ← 내 선택' : ''}</span></div>`).join('')}</div>
+      ${rv.explanation ? `<div class="explain">💡 ${esc(rv.explanation)}</div>` : ''}${mineBox()}</div>`;
+  } else if (ph === 'results') {
+    const qi = board ? toArr(board.qInd) : [], qc = board ? toArr(board.qClasses) : [];
+    body = `<div class="card p-card left"><h2 class="display" style="text-align:center">이번 문제 순위</h2>${mineBox()}
+      <h3 class="label">개인 TOP</h3>${rowsPerson(qi.slice(0, 5), 'points', P.me.pid)}
+      <h3 class="label">반별</h3>${rowsClassQ(qc, board && board.basis, P.me.key)}</div>`;
+  } else if (ph === 'leaderboard') {
+    body = `<div class="card p-card left"><h2 class="display" style="text-align:center">개인 누적 순위</h2>${mineBox()}${rowsPerson(board ? toArr(board.individual).slice(0, 10) : [], 'total', P.me.pid, my)}</div>`;
+  } else if (ph === 'classboard') {
+    body = `<div class="card p-card left"><h2 class="display" style="text-align:center">반별 누적 순위</h2>${mineBox()}${rowsClass(board ? toArr(board.classes) : [], board && board.basis, P.me.key)}</div>`;
+  } else if (ph === 'podium') {
+    const top = board ? toArr(board.individual).slice(0, 3) : [];
+    body = `<div class="card p-card left"><div style="text-align:center"><div class="display" style="font-size:clamp(28px,8vw,44px);color:var(--green-800)">🏆 최종 결과</div></div>${mineBox()}
+      <h3 class="label">개인 TOP 3</h3>${rowsPerson(top, 'total', P.me.pid, my)}<h3 class="label">반별 최종 순위</h3>${rowsClass(board ? toArr(board.classes) : [], board && board.basis, P.me.key)}</div>`;
+    if (!P._conf) { P._conf = true; confetti(); }
+  }
+  if (ph !== 'podium') P._conf = false;
+  $('#view').innerHTML = `<div class="page narrow">${meBar()}${body}</div>`;
+  $('#leaveBtn').onclick = () => confirmModal('이 기기에서 나가고 다시 입장할까요?', () => leave('나갔어요. 다시 입장할 수 있어요.'), '나가기');
+  $$('.ans[data-a]').forEach(b => b.onclick = () => submitAnswer(Number(b.dataset.a)));
+  participantTick(true);
+}
+function rowsPerson(rows, field, mePid, my) {
+  if (!rows.length) return '<div class="empty">아직 순위가 없어요.</div>';
+  const inTop = rows.some(r => r.pid === mePid);
+  let h = rows.map(r => `<div class="rrow ${r.pid === mePid ? 'me' : ''}"><div class="rk${medalCls(r.rank)}">${medal(r.rank)}</div><div class="rname">${esc(r.name)}<small>${esc(clsLabel(r.key))}</small></div><div class="rval">${fmt(field === 'points' ? r.points : r.total)}점${field === 'points' ? `<small>누적 ${fmt(r.total)}점</small>` : ''}</div></div>`).join('');
+  if (my && !inTop && my.rank && field === 'total') h += `<div class="empty" style="padding:8px">…</div><div class="rrow me"><div class="rk">${my.rank}</div><div class="rname">${esc(P.me.name)}<small>${esc(clsLabel(P.me.key))}</small></div><div class="rval">${fmt(my.total)}점</div></div>`;
+  return `<div class="rank-list">${h}</div>`;
+}
+function rowsClass(rows, basis, meKeyV) {
+  if (!rows.length) return '<div class="empty">아직 순위가 없어요.</div>';
+  const val = r => basis === 'avg' ? r.avg : r.total, max = Math.max(1, ...rows.map(val));
+  return `<div class="rank-list"><p class="muted basis">기준: ${basis === 'avg' ? '1인 평균 점수' : '반 전체 합계 점수'}</p>${rows.map(r => `<div class="crow ${r.key === meKeyV ? 'me' : ''}"><div class="rk${medalCls(r.rank)}">${medal(r.rank)}</div><div class="rname">${esc(clsLabel(r.key))}<small>${r.count}명 참가</small></div><div class="cbar"><i style="width:${Math.round(val(r) / max * 100)}%"></i></div><div class="rval">${fmt(val(r))}점<small>${basis === 'avg' ? '합계 ' + fmt(r.total) : '평균 ' + fmt(r.avg)}</small></div></div>`).join('')}</div>`;
+}
+function rowsClassQ(rows, basis, meKeyV) {
+  if (!rows.length) return '<div class="empty">아직 결과가 없어요.</div>';
+  const val = r => basis === 'avg' ? r.avg : r.points, max = Math.max(1, ...rows.map(val));
+  return `<div class="rank-list"><p class="muted basis">기준: ${basis === 'avg' ? '1인 평균 점수' : '반 전체 합계 점수'}</p>${rows.map(r => `<div class="crow ${r.key === meKeyV ? 'me' : ''}"><div class="rk${medalCls(r.rank)}">${medal(r.rank)}</div><div class="rname">${esc(clsLabel(r.key))}<small>정답률 ${r.accuracy}% · ${r.count}명</small></div><div class="cbar"><i style="width:${Math.round(val(r) / max * 100)}%"></i></div><div class="rval">${fmt(val(r))}점<small>${basis === 'avg' ? '1인 평균' : '합계'}</small></div></div>`).join('')}</div>`;
+}
+async function submitAnswer(choice) {
+  const L = S.live;
+  if (!P.me || !L || L.phase !== 'question' || L.paused || P.ans.choice) return;
+  if (L.endsAt && DB.now() > L.endsAt) { P.expired = true; renderPlay(true); return; }
+  P.ans.choice = choice; renderPlay(true);                       // 즉시 잠금
+  try { await DB.set(`answers/${L.qId}/${P.me.pid}`, { choice, t: DB.now() }); }
+  catch (err) { console.error(err); P.ans.choice = 0; renderPlay(true); toast('제출에 실패했어요. 다시 눌러 주세요.'); }
+}
+function participantTick(force) {
+  const L = S.live;
+  if (R.route !== 'join' || !P.me || !L || L.phase !== 'question') return;
+  const t = $('#pT'); if (!t) return;
+  const total = (L.question.timer || 20) * 1000;
+  const rem = L.paused ? (L.remainingMs || 0) : Math.max(0, (L.endsAt || 0) - DB.now());
+  t.textContent = Math.ceil(rem / 1000);
+  const b = $('#pBar'); if (b) b.style.width = Math.min(100, rem / total * 100) + '%';
+  if (rem <= 0 && !L.paused && !P.expired) { P.expired = true; renderPlay(true); }
+}
+function confetti() {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const box = document.createElement('div'); box.className = 'confetti';
+  const cols = ['#35c58b', '#f5b301', '#e5384f', '#2f6fd0', '#0e4d35'];
+  for (let i = 0; i < 70; i++) { const s = document.createElement('i'); s.style.cssText = `left:${Math.random() * 100}%;background:${cols[i % 5]};animation-duration:${2.5 + Math.random() * 2.5}s;animation-delay:${Math.random() * 1.2}s`; box.appendChild(s); }
+  document.body.appendChild(box); setTimeout(() => box.remove(), 7000);
+}
+
+/* ═════════════ 7. 라이브 데이터 구독 ═════════════ */
+function onLive() {
+  const L = S.live, q = L ? L.qId : null;
+  if (P.me && q !== P.ans.q) {
+    if (P.ansUnsub) P.ansUnsub();
+    P.ans = { q, choice: 0 }; P.expired = false;
+    P.ansUnsub = q ? DB.watch(`answers/${q}/${P.me.pid}`, v => { const c = v ? v.choice : 0; if (c !== P.ans.choice) { P.ans.choice = c; if (R.route === 'join') renderPlay(); } }) : null;
+  }
+  const sk = L ? L.phase + '|' + L.qId : '';
+  if (sk !== P._sk) { P._sk = sk; P.expired = false; }
+  if (A.ok) {
+    if (q !== H.ansQ) {
+      if (H.ansUnsub) H.ansUnsub();
+      H.ansQ = q; H.ansCount = 0;
+      H.ansUnsub = q ? DB.watch('answers/' + q, v => { H.ansCount = v ? Object.keys(v).length : 0; hostCounts(); }) : null;
+    }
+    scheduleAuto();
+  }
+  refresh();
+}
+
+/* ═════════════ 8. 관리자: 비밀번호 ═════════════ */
+function renderGate() {
+  $('#view').innerHTML = `<div class="page narrow"><section class="card pad gate">
+    <img src="assets/mascot-face.webp" alt="">
+    <h1 class="display">관리자 확인</h1>
+    <p class="muted" style="font-weight:700">선생님 전용 화면이에요. 비밀번호를 입력해 주세요.</p>
+    <form id="gateForm" autocomplete="off">
+      <input id="pw" class="in" type="password" inputmode="numeric" maxlength="12" placeholder="비밀번호" aria-label="관리자 비밀번호" style="text-align:center;letter-spacing:.3em">
+      <p class="msg" id="gMsg" role="alert"></p>
+      <button class="btn primary xl" type="submit">확인</button>
+    </form></section></div>`;
+  $('#pw').focus();
+  $('#gateForm').onsubmit = e => {
+    e.preventDefault();
+    if ($('#pw').value.trim() === ADMIN_PW) {
+      A.ok = true; sessionStorage.setItem('ws2026_admin', '1'); startAdminSubs(); A.view = 'setup'; render();
+    } else {
+      const f = $('#gateForm'); $('#gMsg').textContent = '비밀번호가 맞지 않아요.'; $('#pw').value = '';
+      f.classList.remove('shake'); void f.offsetWidth; f.classList.add('shake');
+    }
+  };
+}
+let adminSubs = [];
+function startAdminSubs() {
+  if (adminSubs.length) return;
+  adminSubs.push(DB.watch('players', v => { H.players = v || {}; if (R.route === 'admin' && A.view === 'setup') { updateSetupStatus(); renderRoster(); } hostCounts(); }));
+  adminSubs.push(DB.watch('scores', v => { H.scores = v || {}; }));
+  onLive();
+}
+
+/* ═════════════ 9. 관리자: 설정 화면 ═════════════ */
+function qCardHTML(q, i, n) {
+  return `<article class="qcard" data-id="${q.id}">
+    <div class="qtop"><span class="qno display">Q${i + 1}</span><textarea class="ta" data-f="text" rows="2" aria-label="문제 ${i + 1} 내용" placeholder="문제를 입력하세요">${esc(q.text)}</textarea></div>
+    <div class="choices" role="radiogroup" aria-label="보기와 정답">${q.choices.map((c, k) => `<label class="choice ans${k}"><input type="radio" name="cor_${q.id}" data-f="correct" value="${k + 1}" ${q.correct === k + 1 ? 'checked' : ''} aria-label="${k + 1}번을 정답으로"><span class="sym">${SYMBOLS[k]}</span><input class="ti" data-c="${k}" value="${esc(c)}" maxlength="60" aria-label="보기 ${k + 1}" placeholder="보기 ${k + 1}"></label>`).join('')}</div>
+    <p class="muted" style="font-size:12px;font-weight:700;margin-top:-6px">● 동그라미를 눌러 정답을 선택하세요.</p>
+    <div class="mini">
+      <label>제한 시간(초)<input class="ti" data-f="timer" type="number" min="5" max="300" value="${q.timer}"></label>
+      <label>기본 점수<input class="ti" data-f="baseScore" type="number" min="0" placeholder="전체 설정" value="${q.baseScore ?? ''}"></label>
+      <label>빠른 정답 보너스<input class="ti" data-f="bonus" type="number" min="0" placeholder="전체 설정" value="${q.bonus ?? ''}"></label>
+    </div>
+    <label class="label" style="display:grid;gap:4px;font-size:13px">정답 해설<textarea class="ta" data-f="explanation" rows="2" style="min-height:48px">${esc(q.explanation || '')}</textarea></label>
+    <div class="qact"><button class="btn sm" data-act="up" ${i === 0 ? 'disabled' : ''}>↑ 위로</button><button class="btn sm" data-act="down" ${i === n - 1 ? 'disabled' : ''}>↓ 아래로</button><button class="btn sm danger" data-act="del">삭제</button></div>
+  </article>`;
+}
+function renderSetup() {
+  const sc = CFG.scoring;
+  $('#view').innerHTML = `<div class="page">
+  <section class="card pad admin-head">
+    <div><h1 class="display">관리자 설정</h1><p class="muted" style="font-weight:700">문제와 점수 규칙을 정한 뒤 <b>‘실시간 퀴즈 쇼 진행’</b>을 누르면 바로 시작돼요.</p></div>
+    <div class="chips"><span class="chip" id="stPlayers">참가자 0명</span><span class="chip" id="stMode"></span><span class="chip" id="saveState">자동 저장</span><button class="btn sm" id="logout">로그아웃</button></div>
+  </section>
+  <div class="admin-grid">
+    <section class="card pad" aria-label="문제 설정">
+      <div class="sec-head"><h2 class="display">퀴즈 문제 (<span id="qCount">${CFG.questions.length}</span>개)</h2><button class="btn primary sm" id="addQ">+ 문제 추가</button></div>
+      <div id="qList">${CFG.questions.map((q, i) => qCardHTML(q, i, CFG.questions.length)).join('')}</div>
+    </section>
+    <aside class="stack">
+      <section class="card pad"><h2 class="display" style="margin-bottom:10px">점수 규칙</h2>
+        <div class="form-grid">
+          <label>기본 점수<input class="ti" id="sc_base" type="number" min="0" value="${sc.base}"></label>
+          <label>빠른 정답 보너스<input class="ti" id="sc_fast" type="number" min="0" value="${sc.fast}"></label>
+          <label>연속 정답 보너스<input class="ti" id="sc_streak" type="number" min="0" value="${sc.streak}"></label>
+          <label>반 대항 보너스<input class="ti" id="sc_cb" type="number" min="0" value="${sc.classBonus}"></label>
+        </div>
+        <label class="check" style="margin-top:10px"><input type="checkbox" id="sc_cbOn" ${sc.classBonusOn ? 'checked' : ''}> 정답자에게 반 대항 보너스 추가</label>
+        <div class="field" style="margin-top:14px"><span class="label">반별 순위 기준</span>
+          <div class="seg" style="margin:6px 0 0"><button class="btn sm" data-basis="avg" aria-pressed="${CFG.classBasis === 'avg'}">1인 평균 점수</button><button class="btn sm" data-basis="sum" aria-pressed="${CFG.classBasis === 'sum'}">합계 점수</button></div>
+          <p class="muted" style="font-size:12px;font-weight:700">반마다 참가 인원이 달라도 공정하게 비교하려면 ‘1인 평균’을 추천해요.</p></div>
+      </section>
+      <section class="card pad"><h2 class="display" style="margin-bottom:10px">자동 진행</h2>
+        <label class="check"><input type="checkbox" id="au_on" ${CFG.auto.on ? 'checked' : ''}> 다음 화면으로 자동 이동</label>
+        <label style="display:grid;gap:4px;margin-top:10px;font-size:13px;font-weight:800;color:var(--green-800)">대기 시간(초)<input class="ti" id="au_delay" type="number" min="1" max="60" value="${CFG.auto.delay}"></label>
+      </section>
+      <section class="card pad"><h2 class="display" style="margin-bottom:4px">참가 현황</h2>
+        <div class="cls-chips" id="clsChips"></div>
+        <div class="filters"><input class="ti" id="rSearch" placeholder="이름·학번 검색" aria-label="참가자 검색"><select class="ti" id="rCls" aria-label="반 필터"><option value="">전체 반</option>${CLASSES.map(c => `<option value="${c.key}">${clsLabel(c.key)}</option>`).join('')}</select></div>
+        <div class="roster" id="roster"></div>
+      </section>
+      <section class="card pad"><h2 class="display" style="margin-bottom:10px">데이터 관리</h2>
+        <div class="qact"><button class="btn sm" id="exp">JSON 내보내기</button><button class="btn sm" id="imp">JSON 가져오기</button><input type="file" id="impFile" accept="application/json" class="hidden"></div>
+        <div class="qact" style="margin-top:10px"><button class="btn sm danger" id="rstSample">문제 샘플로 초기화</button><button class="btn sm danger" id="rstGame">점수·진행 초기화</button><button class="btn sm danger" id="rstPlayers">참가자 전체 삭제</button></div>
+        <p class="muted" style="font-size:12px;font-weight:700;margin-top:10px">💡 문제와 정답은 이 기기(브라우저)에만 저장돼요. 다른 기기로 옮기려면 JSON으로 내보내세요.</p>
+      </section>
+    </aside>
+  </div>
+  <div class="cta-bar"><span class="chip warn" id="ctaInfo"></span><button class="btn accent xl" id="goLive" style="min-height:60px">🎬 실시간 퀴즈 쇼 진행</button></div>
+  </div>`;
+  bindSetup(); updateSetupStatus(); renderRoster();
+}
+function updateSetupStatus() {
+  const n = Object.keys(H.players).length;
+  const set = (id, t) => { const el = $(id); if (el) el.textContent = t; };
+  set('#stPlayers', `👥 참가자 ${n}명`); set('#ctaInfo', `👥 현재 ${n}명 입장`);
+  set('#stMode', DB.mode === 'firebase' ? '🟢 실시간 연결' : '🧪 테스트 모드');
+  const L = S.live; const goBtn = $('#goLive');
+  if (goBtn) goBtn.textContent = L && L.phase && L.phase !== 'lobby' ? '🎬 진행 중인 퀴즈 이어서 진행' : '🎬 실시간 퀴즈 쇼 진행';
+}
+function renderRoster() {
+  const chipsEl = $('#clsChips'), listEl = $('#roster'); if (!chipsEl || !listEl) return;
+  const players = Object.values(H.players);
+  chipsEl.innerHTML = CLASSES.map(c => { const n = players.filter(p => p.g + '-' + p.c === c.key).length; return `<span class="chip ${n ? '' : 'warn'}">${c.g}-${c.c} · ${n}명</span>`; }).join('');
+  const q = A.filter.q.trim().toLowerCase(), cf = A.filter.cls;
+  const list = players.filter(p => (!cf || p.g + '-' + p.c === cf) && (!q || (p.name + ' ' + p.num).toLowerCase().includes(q)))
+    .sort((a, b) => (a.g - b.g) || (a.c - b.c) || (Number(a.num) - Number(b.num)));
+  listEl.innerHTML = list.length ? list.slice(0, 200).map(p => {
+    const s = H.scores[p.pid];
+    return `<div class="prow"><div><b>${esc(p.name)}</b><small>${esc(clsLabel(p.g + '-' + p.c))} · ${esc(p.num)}번${s ? ' · ' + fmt(s.total) + '점' : ''}</small></div><div class="acts"><button class="btn sm" data-rs="${esc(p.pid)}" title="점수 초기화">0점</button><button class="btn sm danger" data-del="${esc(p.pid)}">삭제</button></div></div>`;
+  }).join('') + (list.length > 200 ? `<div class="empty">검색으로 좁혀 보세요 (200명까지 표시)</div>` : '') : '<div class="empty">조건에 맞는 참가자가 없어요.</div>';
+}
+function bindSetup() {
+  $('#logout').onclick = () => { A.ok = false; sessionStorage.removeItem('ws2026_admin'); A.view = 'gate'; render(); };
+  $('#goLive').onclick = startShow;
+  $('#addQ').onclick = () => { CFG.questions.push({ id: newId(), text: '', choices: ['', '', '', ''], correct: 1, explanation: '', timer: 20, baseScore: null, bonus: null }); saveCfg(); reList(); };
+  const reList = () => { $('#qList').innerHTML = CFG.questions.map((q, i) => qCardHTML(q, i, CFG.questions.length)).join(''); $('#qCount').textContent = CFG.questions.length; };
+  const qList = $('#qList');
+  qList.addEventListener('input', e => {
+    const card = e.target.closest('.qcard'); if (!card) return;
+    const q = CFG.questions.find(x => x.id === card.dataset.id); if (!q) return;
+    const t = e.target;
+    if (t.dataset.c !== undefined) q.choices[Number(t.dataset.c)] = t.value;
+    else if (t.dataset.f === 'correct') q.correct = Number(t.value);
+    else if (['timer', 'baseScore', 'bonus'].includes(t.dataset.f)) q[t.dataset.f] = t.value === '' ? (t.dataset.f === 'timer' ? 20 : null) : Math.max(0, Number(t.value) || 0);
+    else if (t.dataset.f) q[t.dataset.f] = t.value;
+    saveCfg();
+  });
+  qList.addEventListener('click', e => {
+    const b = e.target.closest('[data-act]'); if (!b) return;
+    const card = b.closest('.qcard'); const i = CFG.questions.findIndex(x => x.id === card.dataset.id);
+    if (b.dataset.act === 'del') {
+      if (CFG.questions.length === 1) return toast('문제는 최소 1개가 필요해요.');
+      confirmModal(`Q${i + 1} 문제를 삭제할까요?`, () => { CFG.questions.splice(i, 1); saveCfg(); reList(); }, '삭제');
+      return;
+    }
+    const j = i + (b.dataset.act === 'up' ? -1 : 1); [CFG.questions[i], CFG.questions[j]] = [CFG.questions[j], CFG.questions[i]]; saveCfg(); reList();
+  });
+  const num = (id, fn) => $(id).addEventListener('input', e => { fn(Math.max(0, Number(e.target.value) || 0)); saveCfg(); });
+  num('#sc_base', v => CFG.scoring.base = v); num('#sc_fast', v => CFG.scoring.fast = v); num('#sc_streak', v => CFG.scoring.streak = v); num('#sc_cb', v => CFG.scoring.classBonus = v);
+  $('#sc_cbOn').onchange = e => { CFG.scoring.classBonusOn = e.target.checked; saveCfg(); };
+  $$('[data-basis]').forEach(b => b.onclick = () => { CFG.classBasis = b.dataset.basis; $$('[data-basis]').forEach(x => x.setAttribute('aria-pressed', String(x === b))); saveCfg(); });
+  $('#au_on').onchange = e => { CFG.auto.on = e.target.checked; saveCfg(); };
+  $('#au_delay').addEventListener('input', e => { CFG.auto.delay = Math.min(60, Math.max(1, Number(e.target.value) || 5)); saveCfg(); });
+  $('#rSearch').addEventListener('input', e => { A.filter.q = e.target.value; renderRoster(); });
+  $('#rCls').onchange = e => { A.filter.cls = e.target.value; renderRoster(); };
+  $('#roster').addEventListener('click', e => {
+    const d = e.target.closest('[data-del]'), r = e.target.closest('[data-rs]');
+    if (d) { const p = H.players[d.dataset.del]; confirmModal(`${p ? p.name : '이 참가자'}님을 삭제할까요?`, async () => { await DB.update({ ['players/' + d.dataset.del]: null, ['scores/' + d.dataset.del]: null }); toast('삭제했어요.'); }, '삭제'); }
+    if (r) { DB.remove('scores/' + r.dataset.rs).then(() => toast('점수를 0점으로 되돌렸어요. (다음 문제 집계부터 반영)')); }
+  });
+  $('#exp').onclick = () => {
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify({ questions: CFG.questions, scoring: CFG.scoring, auto: CFG.auto, classBasis: CFG.classBasis }, null, 2)], { type: 'application/json' }));
+    a.download = 'festival-quiz-questions.json'; a.click(); URL.revokeObjectURL(a.href);
+  };
+  $('#imp').onclick = () => $('#impFile').click();
+  $('#impFile').onchange = e => {
+    const f = e.target.files[0]; if (!f) return;
+    const rd = new FileReader();
+    rd.onload = () => {
+      try {
+        const d = JSON.parse(rd.result);
+        if (!Array.isArray(d.questions) || !d.questions.length) throw 0;
+        const base = defaultCfg();
+        CFG = { ...base, ...d, scoring: { ...base.scoring, ...d.scoring }, auto: { ...base.auto, ...d.auto }, questions: d.questions.map(q => ({ id: q.id || newId(), text: q.text || '', choices: [0, 1, 2, 3].map(k => (q.choices || [])[k] || ''), correct: Number(q.correct) || 1, explanation: q.explanation || '', timer: Number(q.timer) || 20, baseScore: q.baseScore ?? null, bonus: q.bonus ?? q.correctBonus ?? null })) };
+        saveCfg(); renderSetup(); toast('가져왔어요!');
+      } catch { toast('파일 형식이 올바르지 않아요.'); }
+    };
+    rd.readAsText(f); e.target.value = '';
+  };
+  $('#rstSample').onclick = () => confirmModal('모든 문제가 지워지고 샘플 3문제로 바뀝니다.', () => { CFG.questions = sampleQuestions(); saveCfg(); renderSetup(); }, '초기화');
+  $('#rstGame').onclick = () => confirmModal('현재 진행 상황, 답안, 점수를 모두 지웁니다. (참가자 명단은 유지)', async () => { await resetGame(); toast('점수와 진행 상황을 초기화했어요.'); }, '초기화');
+  $('#rstPlayers').onclick = () => confirmModal('참가자 명단과 점수를 모두 삭제합니다.', async () => { await resetGame(); await DB.remove('players'); toast('참가자를 모두 삭제했어요.'); }, '전체 삭제');
+}
+async function resetGame() { await DB.update({ live: null, answers: null, results: null, scored: null, scores: null, board: null }); }
+
+/* ═════════════ 10. 진행자: 흐름 제어 ═════════════ */
+const pubQuestion = i => { const q = CFG.questions[i]; return { id: q.id, text: q.text, choices: q.choices, timer: q.timer, index: i, total: CFG.questions.length }; };
+function startShow() {
+  const bad = validateQuestions();
+  if (bad) {
+    toast(`Q${bad.i + 1}: ${bad.why}`, 4200);
+    const el = $$('.qcard')[bad.i]; if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  const L = S.live;
+  A.view = 'live';
+  if (!L || !L.phase || L.phase === 'lobby') goIntro(0);
+  else DB.update({ 'live/hostId': HOSTID });                      // 이어서 진행(진행자 권한 가져오기)
+  render(); window.scrollTo(0, 0);
+}
+function goIntro(i) {
+  return DB.set('live', { phase: 'intro', qIndex: i, qId: CFG.questions[i].id, question: pubQuestion(i), hostId: HOSTID, updatedAt: DB.now() });
+}
+const setPhase = p => DB.update({ 'live/phase': p });
+function startQuestion() {
+  const L = S.live; if (!L || L.phase !== 'intro') return;
+  const q = CFG.questions[L.qIndex];
+  return DB.update({ 'live/phase': 'question', 'live/endsAt': DB.now() + q.timer * 1000, 'live/paused': false, 'live/remainingMs': null });
+}
+function togglePause() {
+  const L = S.live; if (!L || L.phase !== 'question') return;
+  if (!L.paused) DB.update({ 'live/paused': true, 'live/remainingMs': Math.max(0, (L.endsAt || 0) - DB.now()), 'live/endsAt': null });
+  else DB.update({ 'live/paused': false, 'live/endsAt': DB.now() + (L.remainingMs || 0), 'live/remainingMs': null });
+}
+async function closeQuestion() {
+  const L = S.live; if (H.closing || !L || L.phase !== 'question') return;
+  H.closing = true;
+  try {
+    await DB.update({ 'live/phase': 'closed', 'live/paused': false });
+    await sleep(1300);                                              // 늦게 도착한 답안 대기
+    await doReveal();
+  } catch (err) { console.error(err); toast('집계 중 오류가 발생했어요. ‘답안 마감’을 다시 눌러 주세요.', 4500); await DB.update({ 'live/phase': 'question', 'live/paused': true, 'live/remainingMs': 0, 'live/endsAt': null }).catch(() => {}); }
+  finally { H.closing = false; }
+}
+async function doReveal() {
+  const L = S.live, q = CFG.questions.find(x => x.id === L.qId) || CFG.questions[L.qIndex];
+  let res = (await DB.get('scored/' + q.id)) ? await DB.get('results/' + q.id) : null;
+  if (!res) res = await scoreQuestion(q, L.endsAt);
+  await DB.update({ 'live/phase': 'reveal', 'live/reveal': { correct: q.correct, explanation: q.explanation || '', responses: res.responses, correctCount: res.correctCount, distribution: toArr(res.distribution), formula: res.formula } });
+}
+async function scoreQuestion(q, endsAt) {
+  const sc = CFG.scoring, basis = CFG.classBasis;
+  const base = q.baseScore == null ? sc.base : q.baseScore, fast = q.bonus == null ? sc.fast : q.bonus;
+  const [answers, players, scores] = await Promise.all([DB.get('answers/' + q.id), DB.get('players'), DB.get('scores')]);
+  const A_ = answers || {}, PL = players || {}, SC = scores || {};
+  const entries = Object.entries(A_).filter(([pid, a]) => PL[pid] && a && a.choice >= 1 && a.choice <= 4 && (!endsAt || a.t <= endsAt + 1500)).sort((a, b) => a[1].t - b[1].t);
+  const ansBy = {}; entries.forEach(([pid, a]) => ansBy[pid] = a);
+  let firstDone = false; const dist = [0, 0, 0, 0]; let correctCount = 0;
+  const next = {}, qRows = [];
+  for (const pid of Object.keys(PL)) {
+    const prev = SC[pid] || {}, a = ansBy[pid];
+    let points = 0, correct = false, streak = 0, choice = 0;
+    if (a) {
+      choice = a.choice; dist[choice - 1]++; correct = choice === q.correct;
+      if (correct) {
+        points = base + (!firstDone ? fast : 0) + ((prev.streak || 0) > 0 ? sc.streak : 0) + (sc.classBonusOn ? sc.classBonus : 0);
+        firstDone = true; streak = (prev.streak || 0) + 1; correctCount++;
+      }
+    }
+    next[pid] = { total: (prev.total || 0) + points, streak, correct: (prev.correct || 0) + (correct ? 1 : 0), answered: (prev.answered || 0) + (a ? 1 : 0), last: { qId: q.id, choice, correct, points } };
+    qRows.push({ pid, name: PL[pid].name, key: PL[pid].g + '-' + PL[pid].c, points, correct, answered: !!a, total: next[pid].total, t: a ? a.t : 9e15 });
+  }
+  // 개인 누적 순위
+  const cum = Object.keys(PL).map(pid => ({ pid, name: PL[pid].name, key: PL[pid].g + '-' + PL[pid].c, total: next[pid].total, points: next[pid].last.points }));
+  rankDesc(cum, 'total'); const rankOf = {}; cum.forEach(r => rankOf[r.pid] = r.rank);
+  // 반 누적
+  const clsAgg = aggregateClasses(PL, next, basis);
+  const clsRank = {}; clsAgg.forEach(c => clsRank[c.key] = c.rank);
+  Object.keys(next).forEach(pid => { next[pid].rank = rankOf[pid]; next[pid].classRank = clsRank[PL[pid].g + '-' + PL[pid].c]; });
+  // 이번 문제 순위
+  const qInd = qRows.filter(r => r.answered).sort((a, b) => (b.points - a.points) || (a.t - b.t)).slice(0, 10).map(r => ({ pid: r.pid, name: r.name, key: r.key, points: r.points, total: r.total }));
+  let rr = 0, pv = null; qInd.forEach((r, i) => { if (r.points !== pv) { rr = i + 1; pv = r.points; } r.rank = rr; });
+  const qCls = {};
+  qRows.forEach(r => { const c = qCls[r.key] || (qCls[r.key] = { key: r.key, count: 0, resp: 0, ok: 0, points: 0 }); c.count++; c.points += r.points; if (r.answered) c.resp++; if (r.correct) c.ok++; });
+  const qClasses = Object.values(qCls).map(c => ({ key: c.key, count: c.count, points: c.points, avg: Math.round(c.points / c.count), accuracy: c.resp ? Math.round(c.ok / c.resp * 100) : 0, sortv: basis === 'avg' ? c.points / c.count : c.points }));
+  rankDesc(qClasses, 'sortv');
+  const responses = entries.length;
+  const formula = `기본 ${base}점 + 가장 빠른 정답 ${fast}점 + 연속 정답 ${sc.streak}점${sc.classBonusOn ? ' + 반 대항 ' + sc.classBonus + '점' : ''}`;
+  const res = { responses, correctCount, distribution: dist, formula };
+  const upd = { ['scored/' + q.id]: true, ['results/' + q.id]: res, board: { qId: q.id, at: DB.now(), basis, individual: cum.slice(0, 10).map(({ pid, name, key, total, rank }) => ({ pid, name, key, total, rank })), classes: clsAgg, qInd, qClasses } };
+  Object.keys(next).forEach(pid => upd['scores/' + pid] = next[pid]);
+  await DB.update(upd);
+  return res;
+}
+function aggregateClasses(PL, scoreMap, basis) {
+  const m = {};
+  Object.keys(PL).forEach(pid => { const k = PL[pid].g + '-' + PL[pid].c; const c = m[k] || (m[k] = { key: k, count: 0, total: 0 }); c.count++; c.total += (scoreMap[pid] ? scoreMap[pid].total : 0); });
+  const arr = Object.values(m).map(c => ({ ...c, avg: Math.round(c.total / c.count), sortv: basis === 'avg' ? c.total / c.count : c.total }));
+  rankDesc(arr, 'sortv'); return arr.map(({ key, count, total, avg, rank }) => ({ key, count, total, avg, rank }));
+}
+function nextQuestion() {
+  const L = S.live; if (!L) return;
+  if (L.qIndex >= CFG.questions.length - 1) return setPhase('podium');
+  return goIntro(L.qIndex + 1);
+}
+function advance() {
+  if (!isHost()) return;
+  switch (S.live.phase) {
+    case 'intro': return startQuestion();
+    case 'question': return closeQuestion();
+    case 'reveal': return setPhase('results');
+    case 'results': return setPhase('leaderboard');
+    case 'leaderboard': return setPhase('classboard');
+    case 'classboard': return nextQuestion();
+    case 'podium': return confirmModal('점수와 진행 상황을 지우고 처음부터 다시 시작할까요?', async () => { await resetGame(); await goIntro(0); }, '새 게임 시작');
+  }
+}
+async function resetAnswers() {
+  const L = S.live; if (!L || !['intro', 'question'].includes(L.phase)) return toast('집계 전 문제에서만 쓸 수 있어요.');
+  await DB.remove('answers/' + L.qId); toast('이번 문제의 답안을 비웠어요.');
+}
+/* 자동 진행 */
+function scheduleAuto() {
+  const L = S.live; if (!L || !isHost() || !CFG.auto.on) { A.autoAt = null; A.autoKey = ''; return; }
+  const ok = ['intro', 'reveal', 'results', 'leaderboard', 'classboard'].includes(L.phase);
+  const key = L.phase + '|' + L.qId;
+  if (!ok) { A.autoAt = null; A.autoKey = ''; return; }
+  if (key !== A.autoKey) { A.autoKey = key; A.autoAt = Date.now() + CFG.auto.delay * 1000; }
+}
+
+/* ═════════════ 11. 진행자: 화면 ═════════════ */
+const PHASE_NAME = { lobby: '대기', intro: '문제 소개', question: '답안 제출', closed: '집계 중', reveal: '정답 공개', results: '이번 문제 순위', leaderboard: '개인 누적 순위', classboard: '반별 누적 순위', podium: '최종 결과' };
+function renderHost(force) {
+  const L = S.live;
+  if (!L) { if ($('#view') && A.view === 'live') { $('#view').innerHTML = `<div class="page"><div class="empty">진행 정보를 불러오는 중…</div></div>`; } return; }
+  if (force || !$('#stage')) {
+    $('#view').innerHTML = `<div class="page live"><section class="card live-head"><div><div class="kicker" style="font-size:12px">${esc(EVENT_TITLE)}</div><h1 class="display" id="hTitle"></h1></div><div class="live-stats"><span class="chip" id="hPlayers"></span><span class="chip" id="hAns"></span><span class="pill" id="hPhase"></span></div></section>
+    <section class="card stage" id="stage"></section><section class="card controls" id="controls"></section></div>`;
+    H.sig = ''; H.csig = '';
+  }
+  const b = S.board;
+  const sig = [L.phase, L.qId, L.paused, b && b.at, A.tab, L.reveal ? 1 : 0].join('|');
+  if (sig !== H.sig) { H.sig = sig; $('#stage').innerHTML = hostStage(); bindStage(); if (L.phase === 'podium' && !H._conf) { H._conf = true; confetti(); } if (L.phase !== 'podium') H._conf = false; }
+  const csig = [L.phase, L.paused, CFG.auto.on, isHost(), L.qIndex, document.body.classList.contains('proj')].join('|');
+  if (csig !== H.csig) { H.csig = csig; $('#controls').innerHTML = hostControls(); bindControls(); }
+  $('#hTitle').textContent = `문제 ${L.qIndex + 1} / ${L.question ? L.question.total : CFG.questions.length}`;
+  $('#hPhase').textContent = PHASE_NAME[L.phase] || L.phase;
+  hostCounts(); hostTick();
+}
+function hostCounts() {
+  const p = $('#hPlayers'), a = $('#hAns'); if (!p) return;
+  const n = Object.keys(H.players).length;
+  p.textContent = `👥 참가자 ${n}명`;
+  const L = S.live; a.textContent = L && L.phase === 'question' ? `✍️ 응답 ${H.ansCount} / ${n}` : '';
+  a.classList.toggle('hidden', !(L && L.phase === 'question'));
+  const ae = $('#ansLive'); if (ae) ae.textContent = `응답 ${H.ansCount} / ${n}명`;
+}
+function answersHTML(q, mode, correct, dist) {
+  return `<div class="answers">${q.choices.map((c, i) => `<div class="ans ans${i} ${mode === 'reveal' ? (correct === i + 1 ? 'correct' : 'dim') : ''}"><span class="sym">${SYMBOLS[i]}</span><span class="txt">${esc(c)}</span>${mode === 'reveal' && dist ? `<span style="margin-left:auto;font-size:.8em">${dist[i] || 0}명</span>` : ''}</div>`).join('')}</div>`;
+}
+function hostStage() {
+  const L = S.live, q = L.question, b = S.board, basis = b ? b.basis : CFG.classBasis;
+  const ph = L.phase;
+  const wrap = h => `<div class="in-stage">${h}</div>`;
+  if (ph === 'intro') return wrap(`<div class="intro"><div style="display:grid;gap:12px"><div class="kicker">QUESTION ${L.qIndex + 1} / ${q.total}</div><div class="q-text">${esc(q.text)}</div><p style="font-weight:800;font-size:clamp(15px,2vw,22px)" class="muted">⏱ 제한 시간 ${q.timer}초 · ‘문제 시작’을 누르면 참가자 화면에 보기가 열려요</p></div><img class="m" src="${MASCOT}" alt=""></div>`);
+  if (ph === 'question' || ph === 'closed') return wrap(`<div class="q-row"><div class="q-text" style="flex:1">${esc(q.text)}</div><div class="ring" id="hRing"><b id="hT">–</b></div></div>${answersHTML(q, 'q')}<div class="live-stats"><span class="chip" id="ansLive"></span>${L.paused ? '<span class="chip warn">⏸ 일시정지</span>' : ''}${ph === 'closed' ? '<span class="chip warn">답안 집계 중…</span>' : ''}</div>`);
+  const rv = L.reveal || {};
+  if (ph === 'reveal') {
+    const resp = rv.responses || 0, rate = resp ? Math.round((rv.correctCount || 0) / resp * 100) : 0;
+    return wrap(`<div class="q-text" style="font-size:clamp(22px,3.4vw,44px)">${esc(q.text)}</div>${answersHTML(q, 'reveal', rv.correct, toArr(rv.distribution))}
+      ${rv.explanation ? `<div class="explain">💡 ${esc(rv.explanation)}</div>` : ''}<div class="live-stats"><span class="chip">응답 ${resp}명</span><span class="chip">정답 ${rv.correctCount || 0}명</span><span class="chip">정답률 ${rate}%</span><span class="chip warn">자동 배점: ${esc(rv.formula || '')}</span></div>`);
+  }
+  if (ph === 'results') {
+    const dist = toArr(rv.distribution), resp = rv.responses || 0, mx = Math.max(1, ...dist);
+    const tab = A.tab;
+    return wrap(`<div class="res-grid"><div><h2 class="display" style="margin-bottom:8px">응답 분포</h2>${q.choices.map((c, i) => `<div class="dist ${rv.correct === i + 1 ? 'ok' : ''}"><span class="sym ans${i}">${SYMBOLS[i]}</span><div class="bar"><i style="width:${Math.round((dist[i] || 0) / mx * 100)}%"></i></div><span>${dist[i] || 0}명</span></div>`).join('')}
+      <div class="stats3" style="margin-top:16px"><div class="stat"><b>${resp}</b><small>응답자</small></div><div class="stat"><b>${rv.correctCount || 0}</b><small>정답자</small></div><div class="stat"><b>${resp ? Math.round((rv.correctCount || 0) / resp * 100) : 0}%</b><small>정답률</small></div></div></div>
+      <div><div class="seg"><button class="btn sm" data-tab="person" aria-pressed="${tab === 'person'}">개인 순위</button><button class="btn sm" data-tab="class" aria-pressed="${tab === 'class'}">반별 순위</button></div>
+      ${tab === 'person' ? rowsPerson(b ? toArr(b.qInd) : [], 'points', '') : rowsClassQ(b ? toArr(b.qClasses) : [], basis, '')}</div></div>`);
+  }
+  if (ph === 'leaderboard') return wrap(`<h2 class="display" style="font-size:clamp(28px,4.4vw,52px)">🏅 개인 누적 순위 TOP 10</h2>${rowsPerson(b ? toArr(b.individual) : [], 'total', '')}`);
+  if (ph === 'classboard') return wrap(`<h2 class="display" style="font-size:clamp(28px,4.4vw,52px)">🏫 반별 누적 순위</h2>${rowsClass(b ? toArr(b.classes) : [], basis, '')}`);
+  if (ph === 'podium') {
+    const top = b ? toArr(b.individual).slice(0, 3) : [];
+    const order = [top[1], top[0], top[2]], cls = ['p2', 'p1', 'p3'];
+    return wrap(`<div class="pod-wrap"><div style="text-align:center"><div class="display" style="font-size:clamp(34px,6vw,72px);color:var(--green-800)">🏆 최종 결과 🏆</div></div>
+      <div class="final-grid"><div><h2 class="display" style="margin-bottom:12px;text-align:center">개인 TOP 3</h2><div class="podium">${order.map((p, i) => p ? `<div class="pod ${cls[i]}"><span class="medal">${medal(p.rank)}</span><span class="pn">${esc(p.name)}</span><small>${esc(clsLabel(p.key))}</small><b>${fmt(p.total)}점</b></div>` : '<div class="pod" style="opacity:.2"></div>').join('')}</div></div>
+      <div><h2 class="display" style="margin-bottom:12px;text-align:center">반별 최종 순위</h2>${rowsClass(b ? toArr(b.classes) : [], basis, '')}</div></div></div>`);
+  }
+  return wrap('<div class="empty">대기 중…</div>');
+}
+function bindStage() {
+  $$('[data-tab]').forEach(b => b.onclick = () => { A.tab = b.dataset.tab; H.sig = ''; renderHost(); });
+}
+function hostControls() {
+  const L = S.live, host = isHost(), ph = L.phase;
+  const label = { intro: '▶ 문제 시작', question: '⏹ 답안 마감', closed: '집계 중…', reveal: '이번 문제 순위 ▶', results: '개인 누적 순위 ▶', leaderboard: '반별 누적 순위 ▶', classboard: L.qIndex >= CFG.questions.length - 1 ? '🏆 최종 결과 ▶' : '다음 문제 ▶', podium: '🔄 새 게임 시작' }[ph] || '다음 ▶';
+  const canSkip = ['reveal', 'results', 'leaderboard', 'classboard'].includes(ph);
+  return `${!host ? `<button class="btn accent main" id="takeHost">🎬 진행자 권한 가져오기 (이 기기에서 진행)</button>` : `<button class="btn primary main" id="mainBtn" ${ph === 'closed' ? 'disabled' : ''}>${label}</button>`}
+    <button class="btn sm" id="pauseBtn" ${ph === 'question' && host ? '' : 'disabled'}>${L.paused ? '▶ 계속' : '⏸ 일시정지'}</button>
+    <button class="btn sm" id="skipBtn" ${canSkip && host ? '' : 'disabled'}>⏭ 다음 문제로</button>
+    <button class="btn sm" id="rstAns" ${['intro', 'question'].includes(ph) && host ? '' : 'disabled'}>↺ 답안 재설정</button>
+    <button class="btn sm" id="autoBtn" aria-pressed="${CFG.auto.on}">자동 진행: ${CFG.auto.on ? '켜짐' : '꺼짐'}</button><span class="chip warn hidden" id="autoChip"></span>
+    <span class="grow"></span>
+    <button class="btn sm" id="qrBtn">📱 입장 QR</button>
+    <button class="btn sm" id="allBtn">📋 전체 순위</button>
+    <button class="btn sm" id="projBtn">${document.body.classList.contains('proj') ? '화면 줄이기' : '🖥 프로젝터'}</button>
+    <button class="btn sm" id="backBtn">⚙ 설정으로</button>`;
+}
+function bindControls() {
+  const on = (id, fn) => { const el = $(id); if (el) el.onclick = fn; };
+  on('#takeHost', () => { DB.update({ 'live/hostId': HOSTID }); H.csig = ''; });
+  on('#mainBtn', advance); on('#pauseBtn', togglePause); on('#rstAns', resetAnswers);
+  on('#skipBtn', () => confirmModal('이번 문제의 남은 순위 화면을 건너뛰고 다음으로 갈까요?', nextQuestion, '건너뛰기'));
+  on('#autoBtn', () => { CFG.auto.on = !CFG.auto.on; saveCfg(); H.csig = ''; scheduleAuto(); renderHost(); });
+  on('#qrBtn', showQR); on('#allBtn', showAllRanks);
+  on('#projBtn', () => { const p = document.body.classList.toggle('proj'); if (p) document.documentElement.requestFullscreen?.().catch(() => {}); else if (document.fullscreenElement) document.exitFullscreen?.(); H.csig = ''; renderHost(); });
+  on('#backBtn', () => { document.body.classList.remove('proj'); A.view = 'setup'; render(); });
+}
+function hostTick() {
+  const L = S.live; if (!L) return;
+  if (isHost() && L.phase === 'question' && !L.paused && L.endsAt && DB.now() >= L.endsAt) closeQuestion();
+  if (isHost() && A.autoAt && Date.now() >= A.autoAt) { A.autoAt = null; advance(); }
+  if (R.route !== 'admin' || A.view !== 'live') return;
+  const t = $('#hT'), ring = $('#hRing');
+  if (t && L.phase === 'question') {
+    const total = (L.question.timer || 20) * 1000, rem = L.paused ? (L.remainingMs || 0) : Math.max(0, (L.endsAt || 0) - DB.now());
+    t.textContent = Math.ceil(rem / 1000); if (ring) ring.style.setProperty('--p', Math.min(100, rem / total * 100));
+  } else if (t && L.phase === 'closed') { t.textContent = '0'; if (ring) ring.style.setProperty('--p', 0); }
+  const chip = $('#autoChip');
+  if (chip) { if (A.autoAt && CFG.auto.on) { chip.classList.remove('hidden'); chip.textContent = `⏳ ${Math.max(0, Math.ceil((A.autoAt - Date.now()) / 1000))}초 후 자동 이동`; } else chip.classList.add('hidden'); }
+}
+function showQR() {
+  const url = location.href.split('#')[0].split('?')[0];
+  const draw = () => {
+    try { const qr = window.qrcode(0, 'M'); qr.addData(url); qr.make(); return qr.createSvgTag({ scalable: true, margin: 2 }); } catch { return ''; }
+  };
+  const render_ = () => showModal(`<div class="qr"><h2 class="display">📱 스마트폰으로 입장하세요</h2><div id="qrBox">${window.qrcode ? draw() : '<p class="muted">QR을 불러오는 중…</p>'}</div><p style="font-weight:900;word-break:break-all">${esc(url)}</p><button class="btn" id="qClose">닫기</button></div>`);
+  render_(); $('#qClose').onclick = closeModal;
+  if (!window.qrcode) {
+    const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js';
+    s.onload = () => { const box = $('#qrBox'); if (box) box.innerHTML = draw(); };
+    s.onerror = () => { const box = $('#qrBox'); if (box) box.innerHTML = '<p class="muted">QR을 불러오지 못했어요. 주소를 직접 안내해 주세요.</p>'; };
+    document.head.appendChild(s);
+  }
+}
+function showAllRanks() {
+  const rows = Object.values(H.players).map(p => ({ pid: p.pid, name: p.name, key: p.g + '-' + p.c, num: p.num, total: (H.scores[p.pid] || {}).total || 0 }));
+  rankDesc(rows, 'total');
+  showModal(`<div class="sec-head"><h2 class="display">전체 개인 순위 (${rows.length}명)</h2><button class="btn sm" id="mClose">닫기</button></div>
+  <input class="ti" id="mSearch" placeholder="이름 검색" style="margin-bottom:10px"><div class="rank-list" id="mList"></div>`);
+  const draw = () => { const q = $('#mSearch').value.trim(); $('#mList').innerHTML = rows.filter(r => !q || r.name.includes(q)).map(r => `<div class="rrow"><div class="rk${medalCls(r.rank)}">${medal(r.rank)}</div><div class="rname">${esc(r.name)}<small>${esc(clsLabel(r.key))} · ${esc(r.num)}번</small></div><div class="rval">${fmt(r.total)}점</div></div>`).join('') || '<div class="empty">결과가 없어요.</div>'; };
+  draw(); $('#mSearch').oninput = draw; $('#mClose').onclick = closeModal;
+}
+
+/* ═════════════ 12. 시작 ═════════════ */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+  if (R.route !== 'admin' || A.view !== 'live' || e.target.matches('input,textarea,select,button')) return;
+  if (e.code === 'Space' || e.key === 'Enter') { e.preventDefault(); advance(); }
+  if (e.key.toLowerCase() === 'f') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.(); }
+});
+document.addEventListener('click', e => {
+  const t = e.target.closest('.tab'); if (t) go(t.dataset.route);
+  if (e.target.closest('#mClose')) closeModal();
+});
+
+(async function boot() {
+  const cfg = window.FIREBASE_CONFIG || {};
+  let note = '';
+  if (cfg.databaseURL) {
+    try { DB = await makeFirebase(cfg); }
+    catch (err) { console.error(err); DB = makeLocal(); note = '<div class="banner err">Firebase 연결에 실패해 테스트 모드로 실행 중이에요. 설정을 확인해 주세요.</div>'; }
+  } else {
+    DB = makeLocal();
+    note = '<div class="banner">🧪 테스트 모드 — Firebase 설정 전이라 같은 브라우저의 다른 탭끼리만 연결돼요. 학생 기기와 연결하려면 README.md의 설정을 따라주세요.</div>';
+  }
+  $('#banner').innerHTML = note;
+  DB.watch('live', v => { S.live = v; onLive(); });
+  DB.watch('board', v => { S.board = v; refresh(); });
+  if (P.me) subscribeMe();
+  if (A.ok) startAdminSubs();
+  setInterval(() => { participantTick(); hostTick(); }, 250);
+  render();
+})();
+</script>
+</body>
+</html>
